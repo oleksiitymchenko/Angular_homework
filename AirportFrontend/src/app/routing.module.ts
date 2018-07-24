@@ -8,7 +8,7 @@ const routes: Routes = [
     path : '',
     pathMatch : 'full',
     redirectTo : 'menu'},{
-    path : 'menu/pilots/',
+    path : 'menu/pilots',
     component : PilotsListComponent
     }
 
@@ -16,9 +16,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
+   imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class RoutingModule { }
