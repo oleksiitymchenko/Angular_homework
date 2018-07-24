@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PilotsService } from '../pilots.service';
+import PilotDto from 'src/app/shared/pilotDto';
 
 @Component({
   selector: 'app-pilots-list',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pilots-list.component.css']
 })
 export class PilotsListComponent implements OnInit {
-
-  constructor() { }
+  
+  pilots:PilotDto[] = [];
+  constructor(private pilotServise: PilotsService) { }
 
   ngOnInit() {
+    this.pilots = this.pilotServise.getPilots();
   }
 
 }
