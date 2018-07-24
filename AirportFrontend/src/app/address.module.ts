@@ -11,5 +11,5 @@ import { CommonModule } from '@angular/common';
   providers : []
 })
 export class AddressModule { 
-    public static defaultUrl = "http://localhost:60664/";
+    public static defaultUrl = "http://localhost:60664/api/";
 }

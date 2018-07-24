@@ -3,6 +3,9 @@ import PilotDto from 'src/app/shared/pilotDto';
 
 import { Injectable, Inject } from '@angular/core';  
 import { HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { Observable } from '../../../node_modules/rxjs';
+
 
 
 @Injectable({
@@ -11,13 +14,28 @@ import { HttpClient } from '@angular/common/http';
 
 export class PilotsService {
 
-  
-  constructor(private http: HttpClient , private Url = AddressModule.defaultUrl+"Pilots") {}
+  private Url = AddressModule.defaultUrl+"Pilots";
+  constructor(private http: HttpClient ) {}
+  Pilots:Array<PilotDto>;
 
   public getPilots()
   {
-    let Pilots:[PilotDto];
-    this.http.get(this.Url).subscribe((data:[PilotDto]) => Pilots = data);
-    return Pilots;
+    
+    return this.http.get(this.Url);
+    /*console.log("START");
+    const response =   this.http.get(this.Url);
+    console.log(response);
+
+    await response.subscribe((data:Array<PilotDto>) =>
+     { console.log(data);
+     this.Pilots = data; 
+     console.log(this.Pilots);  
+    }); 
+
+    console.log(this.Pilots);
+      console.log("END")
+      return this.Pilots;
+*/
+   
   }
 }

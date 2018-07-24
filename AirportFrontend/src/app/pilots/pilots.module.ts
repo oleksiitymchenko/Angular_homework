@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import {PilotsDetailComponent} from './pilots-detail/pilots-detail.component';
 import {PilotsListComponent} from './pilots-list/pilots-list.component';
 import { PilotsService } from './pilots.service';
-import { HttpModule } from '@angular/http';
 
 @NgModule({
   imports: [
-    CommonModule, HttpModule
+    CommonModule
   ],
   declarations: [PilotsDetailComponent,
     PilotsListComponent],
   providers : [PilotsService]
 })
+
+
 export class PilotsModule { }

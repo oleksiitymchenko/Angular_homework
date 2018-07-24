@@ -9,11 +9,15 @@ import PilotDto from 'src/app/shared/pilotDto';
 })
 export class PilotsListComponent implements OnInit {
   
-  pilots:PilotDto[] = [];
+  pilots :Array<PilotDto>;
   constructor(private pilotServise: PilotsService) { }
 
   ngOnInit() {
-    this.pilots = this.pilotServise.getPilots();
+   this.pilotServise.getPilots().subscribe((data:Array<PilotDto>) =>
+    { console.log(data);
+    this.pilots = data; 
+    console.log(this.pilots);  
+   });
   }
 
 }

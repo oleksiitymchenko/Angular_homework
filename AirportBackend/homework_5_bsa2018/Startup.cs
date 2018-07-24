@@ -39,6 +39,7 @@ namespace homework_5_bsa2018
             services.AddScoped<IService<DepartureDTO>, DepartureService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<SeedData>();
+            services.AddCors();
             var connection = ConnectionString.Value;
             services.AddDbContext<AirportContext>(options => options.UseSqlServer(connection));
 
@@ -51,7 +52,7 @@ namespace homework_5_bsa2018
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
             app.UseMvc();
         }
     }
