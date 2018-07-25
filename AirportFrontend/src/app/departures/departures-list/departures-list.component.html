@@ -1,0 +1,27 @@
+<p>
+    stewardess-list works!
+</p>
+
+<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
+    <button class="ui primary button" (click)="departureCreate()"> Create new departure </button>
+
+    <div class="ui three stackable cards">
+        <div class="ui card" *ngFor="let dep of departures">
+            <div class="content">
+                <a href="#" class="header">Model: {{dep.crewId}}</a>
+                <a href="#" class="header">Model: {{dep.departureTime}}</a>
+                <a href="#" class="header">Model: {{dep.flightNumber}}</a>
+                <a href="#" class="header">Model: {{dep.planeId}}</a>
+
+                <div class="meta">
+                    <!--    <span class="date">Places: {{dep['places']}}</span>
+                    <span class="date">Carrying: {{dep['carrying']}}</span>-->
+                </div>
+            </div>
+            <div class="extra content">
+                <button class="ui primary button" (click)="departureDelete(dep['id']) ">delete</button>
+                <button class="ui primary button" (click)="departureUpdate(dep['id'])"> update </button>
+            </div>
+        </div>
+    </div>
+</div>

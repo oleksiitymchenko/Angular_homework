@@ -11,6 +11,12 @@ import { PlanetypesListComponent } from './planetypes/planetypes-list/planetypes
 import { PlanetypesDetailComponent } from './planetypes/planetypes-detail/planetypes-detail.component';
 import { PlanesListComponent } from './planes/planes-list/planes-list.component';
 import { PlanesDetailComponent } from './planes/planes-detail/planes-detail.component';
+import { CrewsListComponent } from './crews/crews-list/crews-list.component';
+import { CrewsDetailComponent } from './crews/crews-detail/crews-detail.component';
+import { DeparturesListComponent } from './departures/departures-list/departures-list.component';
+import { DeparturesDetailComponent } from './departures/departures-detail/departures-detail.component';
+import { FlightsListComponent } from './flights/flights-list/flights-list.component';
+import { FlightsDetailComponent } from './flights/flights-detail/flights-detail.component';
 
 
 const routes: Routes = [
@@ -58,6 +64,30 @@ const routes: Routes = [
   {
     path: 'menu/planes/:id',
     component: PlanesDetailComponent
+  },
+  {
+    path: 'menu/crews',
+    component: CrewsListComponent
+  },
+  {
+    path: 'menu/crews/:id',
+    component: CrewsDetailComponent
+  },
+  {
+    path: 'menu/departures',
+    component: DeparturesListComponent
+  },
+  {
+    path: 'menu/departures/:id',
+    component: DeparturesDetailComponent
+  },
+  {
+    path: 'menu/flights',
+    component: FlightsListComponent
+  },
+  {
+    path: 'menu/flights/:id',
+    component: FlightsDetailComponent
   }
 ];
 

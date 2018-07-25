@@ -1,0 +1,22 @@
+<p>
+    stewardess-list works!
+</p>
+
+<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
+    <button class="ui primary button" (click)="crewCreate()"> Create new planetype </button>
+
+    <div class="ui three stackable cards">
+        <div class="ui card" *ngFor="let crew of crews">
+            <div class="content">
+                <a href="#" class="header">Pilot: {{crew['pilotId']}}</a>
+                <div class="meta">
+                    <span class="date">Stews: {{crew['stewardessIds']}}</span>
+                </div>
+            </div>
+            <div class="extra content">
+                <button class="ui primary button" (click)="crewDelete(crew['id']) ">delete</button>
+                <button class="ui primary button" (click)="crewUpdate(crew['id'])"> update </button>
+            </div>
+        </div>
+    </div>
+</div>

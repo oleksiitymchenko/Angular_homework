@@ -23,6 +23,7 @@ export class PlanesListComponent implements OnInit {
   getAllPlanes() {
     this.planesServise.getPlanes().subscribe((data: Array<PlaneDto>) => {
       this.planes = data;
+      console.log(data);
       console.log(this.planes);
     });
    
