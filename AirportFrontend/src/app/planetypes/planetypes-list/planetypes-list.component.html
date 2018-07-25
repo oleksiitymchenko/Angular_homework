@@ -1,0 +1,23 @@
+<p>
+    stewardess-list works!
+</p>
+
+<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
+    <button class="ui primary button" (click)="planetypeCreate()"> Create new planetype </button>
+
+    <div class="ui three stackable cards">
+        <div class="ui card" *ngFor="let type of planetypes">
+            <div class="content">
+                <a href="#" class="header">Model: {{type['model']}}</a>
+                <div class="meta">
+                    <span class="date">Places: {{type['places']}}</span>
+                    <span class="date">Carrying: {{type['carrying']}}</span>
+                </div>
+            </div>
+            <div class="extra content">
+                <button class="ui primary button" (click)="planetypeDelete(type['id']) ">delete</button>
+                <button class="ui primary button" (click)="planetypeUpdate(type['id'])"> update </button>
+            </div>
+        </div>
+    </div>
+</div>

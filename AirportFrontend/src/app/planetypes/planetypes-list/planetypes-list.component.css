@@ -1,0 +1,14 @@
+.extra {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+}
+
+.ui.card {
+    min-width: 200px;
+}
+
+.extra button {
+    margin: 5px auto 5px auto;
+    width: 100%;
+}
