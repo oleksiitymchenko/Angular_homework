@@ -13,10 +13,7 @@ const routes: Routes = [
     component : PilotsListComponent
     },
     {
-      path : '',
-      pathMatch : 'full',
-      redirectTo : 'menu'},{
-      path : 'menu/pilots:id',
+       path : 'menu/pilots/:id',
       component : PilotsDetailComponent
       }
   ];

@@ -6,5 +6,9 @@
     <li *ngFor="let pilot of pilots">
         <p>{{pilot.id}}</p>
         <p>{{pilot.firstName}} {{pilot.lastName}}</p>
+        <button (click)="pilotDelete(pilot.id) ">delete</button>
+        <button (click)="pilotUpdate(pilot.id)"> update </button>
+        <button (click)="pilotCreate(pilot.id)"> create </button>
+
     </li>
 </ul>

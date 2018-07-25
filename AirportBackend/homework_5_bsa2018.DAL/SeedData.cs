@@ -73,7 +73,7 @@ namespace homework_5_bsa2018.DAL
                  {
                 Pilot = new Pilot()
                 {
-                    FirstName ="Petro",
+                    FirstName ="Vitalik",
                     LastName ="Poroshenko",
                     Experience =3,
                 },
