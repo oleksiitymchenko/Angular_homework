@@ -2,6 +2,7 @@
 using homework_5_bsa2018.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -38,9 +39,10 @@ namespace homework_5_bsa2018.DAL.Repositories
 
         public void Delete(int id)
         {
-            var item = db.Tickets.Find(id);
-            if (item == null) throw new ArgumentNullException();
+            var item = db.Tickets.FirstOrDefault(o=>o.Id==id);
+                if (item == null) throw new ArgumentNullException();
             db.Tickets.Remove(item);
+
         }
     }
 }

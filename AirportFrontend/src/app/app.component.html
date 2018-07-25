@@ -1,3 +1,60 @@
-<div>sdadsdsdsa</div>
-{{title}}
-<router-outlet></router-outlet>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css" />
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
+
+<script language='javascript'>
+    $(document).ready(function() {
+        $('.ui.accordion').accordion();
+    });
+</script>
+
+<body>
+    <style>
+        * {
+            font-family: 'Century Gothic';
+        }
+        
+        .contentMain {
+            min-height: calc(100vh - 105px);
+        }
+        
+        .footer {
+            height: 50px;
+        }
+    </style>
+    <div class="contentMain">
+        <div class="ui blue fixed inverted menu">
+            <div class="ui container">
+                <a>
+                    <i class="big user icon"></i> Flights
+                </a>
+                <a>Planes</a>
+                <a>Planetypes</a>
+                <a>Departures</a>
+                <a>Tickets</a>
+                <a>Pilots</a>
+                <a>Stewardesses</a>
+                <a>Crews</a>
+
+
+            </div>
+        </div>
+
+        <div class="ui container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div class="ui inverted vertical footer segment">
+        <div class="ui center aligned container">
+            <div class="ui horizontal inverted small divided link list">
+                By Tymchenko Oleksii for BSA2018
+            </div>
+        </div>
+    </div>
+
+
+</body>

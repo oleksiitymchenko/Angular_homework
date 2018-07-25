@@ -17,7 +17,7 @@ import { PilotsListComponent } from './pilots/pilots-list/pilots-list.component'
     PilotsModule,
     RoutingModule
   ],
-  providers: [AppComponent, PilotsListComponent, HttpClientModule, HttpModule],
+  providers: [AppComponent, HttpClientModule, HttpModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

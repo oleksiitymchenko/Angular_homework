@@ -40,7 +40,7 @@ namespace homework_5_bsa2018.DAL.Repositories
 
         public void Delete(int id)
         {
-            var item = db.Pilots.FirstOrDefaultAsync(p => p.Id == id).Result;
+            var item = db.Pilots.FirstOrDefault(o => o.Id == id);
             if (item == null) throw new ArgumentNullException();
             db.Pilots.Remove(item);
         }

@@ -40,7 +40,7 @@ namespace homework_5_bsa2018.DAL.Repositories
 
         public void Delete(int id)
         {
-            var item = db.Flights.Find(id);
+            var item = db.Flights.FirstOrDefault(o=>o.Id==id);
             if (item == null) throw new ArgumentNullException();
             db.Flights.Remove(item);
         }

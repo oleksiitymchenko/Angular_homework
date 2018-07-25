@@ -3,6 +3,7 @@ using homework_5_bsa2018.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace homework_5_bsa2018.DAL.Repositories
@@ -40,7 +41,7 @@ namespace homework_5_bsa2018.DAL.Repositories
 
         public void Delete(int id)
         {
-            var item = db.Stewardesses.Find(id);
+            var item = db.Stewardesses.FirstOrDefault(o => o.Id == id);
             if (item == null) throw new ArgumentNullException();
             db.Stewardesses.Remove(item);
         }
