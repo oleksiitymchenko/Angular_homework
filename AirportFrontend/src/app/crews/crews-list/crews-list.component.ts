@@ -14,7 +14,7 @@ export class CrewsListComponent implements OnInit {
     this.getAllCrews();
   }
 
-  planetypeDelete(id: number) {
+  crewDelete(id: number) {
     const number = this.crews.findIndex(item => (item['id'] == id));
     this.crews.splice(number, 1);
     this.service.deleteCrew(id).subscribe();

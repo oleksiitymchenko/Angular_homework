@@ -14,7 +14,7 @@ export class FlightsListComponent implements OnInit {
     this.getAllFlights();
   }
 
-  planetypeDelete(id: number) {
+ flightDelete(id: number) {
     const number = this.flights.findIndex(item => (item['id'] == id));
     this.flights.splice(number, 1);
     this.service.deleteFlight(id).subscribe();
