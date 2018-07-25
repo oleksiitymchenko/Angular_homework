@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import {PilotsModule} from './pilots/pilots.module';
 import {StewardessModule} from './stewardess/stewardess.module';
+import {TicketsModule} from './tickets/tickets.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {StewardessModule} from './stewardess/stewardess.module';
     HttpClientModule,
     PilotsModule,
     StewardessModule,
+    TicketsModule,
     RoutingModule
   ],
   providers: [AppComponent, HttpClientModule, HttpModule],

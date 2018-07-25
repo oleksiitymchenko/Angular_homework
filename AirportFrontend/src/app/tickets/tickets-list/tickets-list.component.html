@@ -1,0 +1,22 @@
+<p>
+    stewardess-list works!
+</p>
+
+<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
+    <button class="ui primary button" (click)="ticketCreate()"> Create new ticket </button>
+
+    <div class="ui three stackable cards">
+        <div class="ui card" *ngFor="let ticket of tickets">
+            <div class="content">
+                <a href="#" class="header">Flight: {{ticket.number}}</a>
+                <div class="meta">
+                    <span class="date">Price: {{ticket.price}}</span>
+                </div>
+            </div>
+            <div class="extra content">
+                <button class="ui primary button" (click)="ticketDelete(ticket.id) ">delete</button>
+                <button class="ui primary button" (click)="ticketUpdate(ticket.id)"> update </button>
+            </div>
+        </div>
+    </div>
+</div>

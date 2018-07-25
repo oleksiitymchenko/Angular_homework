@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StewardessService } from '../stewardess.service';
 import PilotDto from '../../shared/pilotDto';
 import { ActivatedRoute } from '@angular/router';
-import StewardessDto from 'src/app/shared/stewardessDto';
+import StewardessDto from '../../shared/stewardessDto';
 
 @Component({
   selector: 'app-stewardess-detail',
