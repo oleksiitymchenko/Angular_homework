@@ -14,4 +14,4 @@ import {StewardessService } from './stewardess.service';
 })
 
 
-export class PilotsModule { }
+export class StewardessModule { }

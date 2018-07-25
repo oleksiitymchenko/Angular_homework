@@ -3,19 +3,19 @@
 </p>
 
 <div class="ui container" style="margin-top:70px; margin-bottom:10px;">
-    <button class="ui primary button" (click)="pilotCreate(pilot.id)"> create </button>
+    <button class="ui primary button" (click)="stewardessCreate()"> Create new stewardess </button>
 
-    <div class="ui four stackable cards">
+    <div class="ui three stackable cards">
         <div class="ui card" *ngFor="let stewardess of stewardesses">
             <div class="content">
                 <a href="#" class="header">{{stewardess.firstName}} {{stewardess.lastName}}</a>
                 <div class="meta">
-                    <span class="date">Date of birth: {{stewardess.dateOfBirth}}</span>
+                    <span class="date">Date of birth: {{stewardess.dateOfBirth.substr(0,10)}}</span>
                 </div>
             </div>
             <div class="extra content">
-                <button class="ui primary button" (click)="pilotDelete(pilot.id) ">delete</button>
-                <button class="ui primary button" (click)="pilotUpdate(pilot.id)"> update </button>
+                <button class="ui primary button" (click)="stewardessDelete(stewardess.id) ">delete</button>
+                <button class="ui primary button" (click)="stewardessUpdate(stewardess.id)"> update </button>
             </div>
         </div>
     </div>

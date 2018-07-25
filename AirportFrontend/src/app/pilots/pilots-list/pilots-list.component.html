@@ -5,7 +5,7 @@
 <div class="ui container" style="margin-top:70px; margin-bottom:10px;">
     <button class="ui primary button" (click)="pilotCreate(pilot.id)"> create </button>
 
-    <div class="ui four stackable cards">
+    <div class="ui three stackable cards">
         <div class="ui card" *ngFor="let pilot of pilots">
             <div class="content">
                 <a href="#" class="header">{{pilot.firstName}} {{pilot.lastName}}</a>

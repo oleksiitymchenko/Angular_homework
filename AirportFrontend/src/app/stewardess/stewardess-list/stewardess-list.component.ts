@@ -27,7 +27,7 @@ export class StewardessListComponent implements OnInit {
   }
 
   stewardessUpdate(id: number) {
-    const stewardess = new StewardessDto(5, " test name", "test lastname", "06/05/1972");
+    const stewardess = new StewardessDto(5, " test name update", "test lastname", "06/05/1972");
     this.stewardessServise.updateStewardess(id, stewardess).subscribe();
     const updating = this.stewardesses.find(item => item['id'] == id);
     updating['firstName'] = stewardess['FirstName'];
@@ -37,8 +37,8 @@ export class StewardessListComponent implements OnInit {
 
   stewardessCreate()
   {
-    const pilot = new StewardessDto(5, " test create 3", "test create 3", 10);
-    this.stewardessServise.createStewardess(pilot).subscribe();
+    const stewardess = new StewardessDto(5, " test create 3", "test create 3", "04/05/2003");
+    this.stewardessServise.createStewardess(stewardess).subscribe();
     this.getAllStewardesses();
   }
 
