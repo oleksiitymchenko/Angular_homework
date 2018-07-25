@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import {PilotsModule} from './pilots/pilots.module';
-import { PilotsListComponent } from './pilots/pilots-list/pilots-list.component';
 
 @NgModule({
   declarations: [

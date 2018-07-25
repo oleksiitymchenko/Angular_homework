@@ -1,5 +1,5 @@
 import {AddressModule} from '../address.module';
-import PilotDto from '../shared/pilotDto';
+import StewardessDto from '../shared/stewardessDto';
 
 import { Injectable, Inject } from '@angular/core';  
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -11,33 +11,33 @@ import { HttpModule, RequestOptions, RequestMethod } from '@angular/http';
   providedIn: 'root'
 })
 
-export class PilotsService {
+export class StewardessService {
 
-  private Url = AddressModule.defaultUrl+"Pilots";
+  private Url = AddressModule.defaultUrl+"Stewardesses";
   constructor(private http: HttpClient ) {}
 
-  public getPilots()
+  public getStewardesses()
   {
     return this.http.get(this.Url);   
   }
 
-  public getOnePilot(id:number)
+  public getOneStewardess(id:number)
   {
     return this.http.get(this.Url+"/"+id);
   }
 
-  public deletePilot(id: number) 
+  public deleteStewardess(id: number) 
   {
     return this.http.delete(this.Url+"/"+id);
   }
 
-  public updatePilot(id:number, pilot:PilotDto)
+  public updateStewardess(id:number, stewardess:StewardessDto)
   {
-    return this.http.put(this.Url+"/"+id,pilot);
+    return this.http.put(this.Url+"/"+id,stewardess);
   }
 
-  public createPilot(pilot:PilotDto)
+  public createStewardess(stewardess:StewardessDto)
   {
-    return this.http.post(this.Url,pilot);
+    return this.http.post(this.Url,stewardess);
   }
 }

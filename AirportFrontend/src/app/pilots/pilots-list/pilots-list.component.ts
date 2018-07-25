@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PilotsService } from '../pilots.service';
-import PilotDto from 'src/app/shared/pilotDto';
+import PilotDto from '../../shared/pilotDto';
 
 @Component({
   selector: 'app-pilots-list',

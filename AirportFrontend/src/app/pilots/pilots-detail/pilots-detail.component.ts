@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PilotsService } from '../pilots.service';
 import PilotDto from '../../shared/pilotDto';
-import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pilots-detail',

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace homework_5_bsa2018.DAL.Repositories
 {

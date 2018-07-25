@@ -1,16 +1,16 @@
 <p>
-    pilots-list works!
+    stewardess-list works!
 </p>
 
 <div class="ui container" style="margin-top:70px; margin-bottom:10px;">
     <button class="ui primary button" (click)="pilotCreate(pilot.id)"> create </button>
 
     <div class="ui four stackable cards">
-        <div class="ui card" *ngFor="let pilot of pilots">
+        <div class="ui card" *ngFor="let stewardess of stewardesses">
             <div class="content">
-                <a href="#" class="header">{{pilot.firstName}} {{pilot.lastName}}</a>
+                <a href="#" class="header">{{stewardess.firstName}} {{stewardess.lastName}}</a>
                 <div class="meta">
-                    <span class="date">Experince: {{pilot.experience}}</span>
+                    <span class="date">Date of birth: {{stewardess.dateOfBirth}}</span>
                 </div>
             </div>
             <div class="extra content">
