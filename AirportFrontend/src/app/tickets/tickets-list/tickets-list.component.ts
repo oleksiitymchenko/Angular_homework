@@ -14,7 +14,7 @@ export class TicketsListComponent implements OnInit {
     this.getAllTickets();
   }
 
-  stewardessDelete(id: number) {
+  ticketDelete(id: number) {
     const number = this.tickets.findIndex(item => (item['id'] == id));
     this.tickets.splice(number, 1);
     this.ticketsServise.deleteTicket(id).subscribe();
@@ -23,7 +23,9 @@ export class TicketsListComponent implements OnInit {
   getAllTickets() {
     this.ticketsServise.getTickets().subscribe((data: Array<TicketDto>) => {
       this.tickets = data;
+      console.log(this.tickets);
     });
+   
   }
 
   ticketUpdate(id: number) {
@@ -31,7 +33,7 @@ export class TicketsListComponent implements OnInit {
     this.ticketsServise.updateTicket(id, ticket).subscribe();
     const updating = this.tickets.find(item => item['id'] == id);
     updating['price'] = ticket['price'];
-    updating['number'] = ticket['number'];
+    updating['flightNumber'] = ticket['flightNumber'];
    }
 
   ticketCreate()

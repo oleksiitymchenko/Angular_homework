@@ -1,13 +1,13 @@
 export default class TicketDto{
     public id: number;
     public price: number;
-    public number: string;
+    public flightNumber: string;
     /**
      *
      */
     constructor(id,price,number) {
        this.id=id;
        this.price=price;
-       this.number=number;
+       this.flightNumber=number;
     }
 }

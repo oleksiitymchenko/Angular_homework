@@ -8,14 +8,14 @@
     <div class="ui three stackable cards">
         <div class="ui card" *ngFor="let ticket of tickets">
             <div class="content">
-                <a href="#" class="header">Flight: {{ticket.number}}</a>
+                <a href="#" class="header">Flight: {{ticket['flightNumber']}}</a>
                 <div class="meta">
-                    <span class="date">Price: {{ticket.price}}</span>
+                    <span class="date">Price: {{ticket['price']}}</span>
                 </div>
             </div>
             <div class="extra content">
-                <button class="ui primary button" (click)="ticketDelete(ticket.id) ">delete</button>
-                <button class="ui primary button" (click)="ticketUpdate(ticket.id)"> update </button>
+                <button class="ui primary button" (click)="ticketDelete(ticket['id']) ">delete</button>
+                <button class="ui primary button" (click)="ticketUpdate(ticket['id'])"> update </button>
             </div>
         </div>
     </div>
