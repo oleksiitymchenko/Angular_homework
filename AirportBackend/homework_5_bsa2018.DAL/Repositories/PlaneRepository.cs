@@ -18,7 +18,7 @@ namespace homework_5_bsa2018.DAL.Repositories
         }
 
         public async Task<IEnumerable<Plane>> GetAllAsync() =>
-            await db.Planes.ToListAsync();
+            await db.Planes.Include(o=>o.TypePlane).ToListAsync();
 
         public async Task<Plane> GetAsync(int id) =>
             await db.Planes.FindAsync(id);

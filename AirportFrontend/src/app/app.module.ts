@@ -8,6 +8,7 @@ import {PilotsModule} from './pilots/pilots.module';
 import {StewardessModule} from './stewardess/stewardess.module';
 import {TicketsModule} from './tickets/tickets.module';
 import { PlanetypesModule } from './planetypes/planetypes.module';
+import { PlanesModule } from './planes/planes.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PlanetypesModule } from './planetypes/planetypes.module';
     StewardessModule,
     TicketsModule,
     PlanetypesModule,
+    PlanesModule,
     RoutingModule
   ],
   providers: [AppComponent, HttpClientModule, HttpModule],

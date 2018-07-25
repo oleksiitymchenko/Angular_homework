@@ -9,6 +9,8 @@ import {TicketsListComponent} from './tickets/tickets-list/tickets-list.componen
 import {TicketsDetailComponent} from './tickets/tickets-detail/tickets-detail.component';
 import { PlanetypesListComponent } from './planetypes/planetypes-list/planetypes-list.component';
 import { PlanetypesDetailComponent } from './planetypes/planetypes-detail/planetypes-detail.component';
+import { PlanesListComponent } from './planes/planes-list/planes-list.component';
+import { PlanesDetailComponent } from './planes/planes-detail/planes-detail.component';
 
 
 const routes: Routes = [
@@ -48,6 +50,14 @@ const routes: Routes = [
   {
     path: 'menu/planetypes/:id',
     component: PlanetypesDetailComponent
+  },
+  {
+    path: 'menu/planes',
+    component: PlanesListComponent
+  },
+  {
+    path: 'menu/planes/:id',
+    component: PlanesDetailComponent
   }
 ];
 

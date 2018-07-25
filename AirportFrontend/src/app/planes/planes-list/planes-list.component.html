@@ -1,0 +1,23 @@
+<p>
+    stewardess-list works!
+</p>
+
+<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
+    <button class="ui primary button" (click)="planeCreate()"> Create new plane </button>
+
+    <div class="ui three stackable cards">
+        <div class="ui card" *ngFor="let plane of planes">
+            <div class="content">
+                <a href="#" class="header">Model: {{plane['name']}}</a>
+                <div class="meta">
+                    <span class="date">Created: {{plane['created']}}</span>
+                    <span class="date">Lifetime: {{plane['lifeTime']}}</span>
+                </div>
+            </div>
+            <div class="extra content">
+                <button class="ui primary button" (click)="planeDelete(plane['id']) ">delete</button>
+                <button class="ui primary button" (click)="planeUpdate(plane['id'])"> update </button>
+            </div>
+        </div>
+    </div>
+</div>
