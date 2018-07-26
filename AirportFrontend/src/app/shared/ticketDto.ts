@@ -5,6 +5,9 @@ export default class TicketDto{
     /**
      *
      */
+    /**
+     *
+     */
     constructor(id,price,number) {
        this.id=id;
        this.price=price;

@@ -1,13 +1,41 @@
 <h1 class="ui center aligned header">
     Tickets list
-    <div class="sub header">
-        <button class="ui green button" (click)="ticketCreate()" style="width:100%;"> Create new ticket </button>
-    </div>
+    <button class="ui green button" (click)="creatingProcess()" style="width:100%; height: 45px;">Сreate new ticket </button>
+
 </h1>
+<form *ngIf="creating" id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+    <h4 class="ui dividing header">Ticket creation </h4>
+    <div class="two fields">
+        <div class="field">
+            <label>Flight number</label>
+            <div class="form-group">
+                <input type="text" class="form-control" name="number" [(ngModel)]="ticketCreating.flightNumber" #number="ngModel" [ngClass]="{ 'is-invalid': f.submitted && number.invalid }" required/>
+                <div *ngIf="f.submitted && number.invalid">
+                    <div *ngIf="number.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input flight number
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Ticket price</label>
+            <div class="form-group">
+                <input type="number" class="form-control" name="price" placeholder="{{ticketCreating.price}}" [(ngModel)]="ticketCreating.price" #price="ngModel" [ngClass]="{ 'is-invalid': f.submitted && price.invalid }" required/>
+                <div *ngIf="f.submitted && price.invalid">
+                    <div *ngIf="price.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input price
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <input class="ui green button" (click)="ticketCreate(ticketCreating)" type="submit" value="Save" form="myform" style="width: 100%;" />
+
+</form>
 
 
-
-<div class="ui container" style=" margin-bottom:10px;">
+<div class="ui container" style=" margin-bottom:10px; margin-top:20px;">
     <div class="ui three doubling cards">
         <div class="ui raised fluid card" *ngFor="let ticket of tickets">
             <div class="ui top attached label">Ticket id: {{ticket['id']}}</div>

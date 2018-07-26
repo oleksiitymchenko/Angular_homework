@@ -10,9 +10,20 @@ import TicketDto from '../../shared/ticketDto';
 export class TicketsListComponent implements OnInit {
 
   tickets: Array<TicketDto>;
+  ticketCreating:TicketDto;
+  creating:boolean;
   constructor(private ticketsServise: TicketsService) {
     this.getAllTickets();
+    this.ticketCreating=new TicketDto(undefined,undefined,undefined);
+    this.creating=false;
   }
+
+  creatingProcess()
+  {
+    const x = !this.creating;
+    this.creating=x;
+  }
+
 
   ticketDelete(id: number) {
     const number = this.tickets.findIndex(item => (item['id'] == id));
@@ -28,19 +39,14 @@ export class TicketsListComponent implements OnInit {
    
   }
 
-  ticketUpdate(id: number) {
-    const ticket = new TicketDto(5, 200, "MH-18");
-    this.ticketsServise.updateTicket(id, ticket).subscribe();
-    const updating = this.tickets.find(item => item['id'] == id);
-    updating['price'] = ticket['price'];
-    updating['flightNumber'] = ticket['flightNumber'];
-   }
-
-  ticketCreate()
+  ticketCreate(ticket:TicketDto)
   {
-    const ticket = new TicketDto(5, 200, "AA7777AA");
     this.ticketsServise.createTicket(ticket).subscribe();
     this.getAllTickets();
+  }
+
+  onSubmit()
+  {
   }
 
   ngOnInit() {
