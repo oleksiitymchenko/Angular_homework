@@ -1,11 +1,20 @@
 a {
     color: white;
-    margin-top: 2em;
-    margin: 1em;
+}
+
+a:hover {
+    color: blue;
+    background-color: gray;
+}
+
+.ui.blue.fixed.inverted.menu .ui.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .contentMain {
-    margin-top: 70px;
     min-height: calc(100vh - 50px);
 }
 
