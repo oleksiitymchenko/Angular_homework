@@ -13,24 +13,18 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="field">
                 <label>Ticket price</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="number" [(ngModel)]="ticket.flightNumber" #number="ngModel" [ngClass]="{ 'is-invalid': f.submitted && number.invalid }" required/>
-                    <div *ngIf="f.submitted && number.invalid">
-                        <div *ngIf="number.errors.required" class="ui pointing red basic label" style="width:100%">
+                    <input type="number" class="form-control" name="price" placeholder="{{ticket.price}}" [(ngModel)]="ticket.price" #price="ngModel" [ngClass]="{ 'is-invalid': f.submitted && price.invalid }" required/>
+                    <div *ngIf="f.submitted && price.invalid">
+                        <div *ngIf="price.errors.required" class="ui pointing red basic label" style="width:100%">
                             Input price
                         </div>
                     </div>
                 </div>
 
-            </div>
-            <div class="field">
-                <div class="field">
-                    <input type="number" name="price" placeholder="{{ticket.price}}" [(ngModel)]="ticket.price">
-                </div>
             </div>
         </div>
     </form>
