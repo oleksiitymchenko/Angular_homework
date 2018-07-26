@@ -12,6 +12,7 @@ import { PlanesModule } from './planes/planes.module';
 import { CrewsModule } from './crews/crews.module';
 import { FlightsModule } from './flights/flights.module';
 import { DeparturesModule } from './departures/departures.module';
+import { FormsModule } from '../../node_modules/@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DeparturesModule } from './departures/departures.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     PilotsModule,
     StewardessModule,
     TicketsModule,

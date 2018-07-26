@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import {TicketsDetailComponent} from './tickets-detail/tickets-detail.component';
 import {TicketsListComponent} from './tickets-list/tickets-list.component';
 import {TicketsService } from './tickets.service';
+import { FormsModule } from '../../../node_modules/@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
-  ],
+    CommonModule,
+    FormsModule
+    ],
   declarations: [TicketsDetailComponent,
     TicketsListComponent],
   providers : [TicketsService]

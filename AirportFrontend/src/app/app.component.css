@@ -1,11 +1,11 @@
 a {
     color: white;
-    margin-top: 1.5em;
+    margin-top: 2em;
     margin: 1em;
 }
 
 .contentMain {
-    margin-top: 100px;
+    margin-top: 70px;
     min-height: calc(100vh - 50px);
 }
 

@@ -1,6 +1,63 @@
-<p>
-    ticket-detail works!
+<div *ngIf="allowchange">
+    <br>
+    <form id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+        <h4 class="ui dividing header">Ticket {{ticket.id}} information</h4>
+        <div class="two fields">
+            <div class="field">
+                <label>Flight number</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="number" [(ngModel)]="ticket.flightNumber" #number="ngModel" [ngClass]="{ 'is-invalid': f.submitted && number.invalid }" required/>
+                    <div *ngIf="f.submitted && number.invalid">
+                        <div *ngIf="number.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input flight number
+                        </div>
+                    </div>
+                </div>
 
-    <button onclick=""></button>
-</p>
-<h1> {{ticket.number}}</h1>
+            </div>
+            <div class="field">
+                <label>Ticket price</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="number" [(ngModel)]="ticket.flightNumber" #number="ngModel" [ngClass]="{ 'is-invalid': f.submitted && number.invalid }" required/>
+                    <div *ngIf="f.submitted && number.invalid">
+                        <div *ngIf="number.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input price
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="field">
+                <div class="field">
+                    <input type="number" name="price" placeholder="{{ticket.price}}" [(ngModel)]="ticket.price">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div><a href="./menu/tickets"><button class="ui left labeled icon button">
+        <i class="left arrow icon"></i>
+        Back to list
+      </button></a>
+        <input class="ui green button" (click)="ticketSaveUpdates(ticket['id'],ticket)" type="submit" value="Save" form="myform" />
+    </div>
+</div>
+
+<div *ngIf="!allowchange" class="ui items">
+    <div class="item">
+        <div class="ui top attached label">Ticket id: {{ticket['id']}}</div>
+        <div class="content">
+            <div class="header">Flight number: {{ticket.flightNumber}}</div>
+            <div class="meta">
+                <span class="price">{{ticket.price}}$</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a href="./menu/tickets"><button class="ui left labeled icon button">
+            <i class="left arrow icon"></i>
+            Back to list
+          </button></a>
+        <div class="ui primary button" (click)="onUpdateClick()">Update</div>
+    </div>
+
+</div>
