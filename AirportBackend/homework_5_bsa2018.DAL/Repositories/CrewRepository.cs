@@ -41,7 +41,7 @@ namespace homework_5_bsa2018.DAL.Repositories
         
         public void Delete(int id)
         {
-            var item = db.Crews.FirstOrDefault(o=>o.Id==id);
+            var item = db.Crews.Include(c => c.Stewardesses).Include(c => c.Pilot).FirstOrDefault(o=>o.Id==id);
             if (item == null) throw new ArgumentNullException();
             db.Crews.Remove(item);
         }

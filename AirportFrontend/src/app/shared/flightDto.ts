@@ -1,6 +1,7 @@
 export default class FlightDTO
 {
     public id: number;
+    public number: number;
     public startPoint: string;
     public startTime: string;
     public finishPoint: string;
@@ -9,6 +10,7 @@ export default class FlightDTO
     
     constructor(id,number,startPoint,startTime,finishPoint,finishTime,tickets) {
         this.id=id;
+        this.number=number;
         this.startPoint=startPoint;
         this.startTime = startTime;
         this.finishPoint = finishPoint;

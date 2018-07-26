@@ -8,15 +8,16 @@
     <div class="ui three stackable cards">
         <div class="ui card" *ngFor="let flight of flights">
             <div class="content">
-                <a href="#" class="header">Model: {{flight.startPoint}}</a>
-                <a href="#" class="header">Model: {{flight.startTime}}</a>
-                <a href="#" class="header">Model: {{flight.finishPoint}}</a>
-                <a href="#" class="header">Model: {{flight.finishTime}}</a>
-                <a href="#" class="header">Model: {{flight.ticketIds}}</a>
+                <a href="#" class="header">number: {{flight.number}}</a>
+                <a href="#" class="header">startPoint: {{flight.startPoint}}</a>
+                <a href="#" class="header">startTime: {{flight.startTime}}</a>
+                <a href="#" class="header">finishPoint: {{flight.finishPoint}}</a>
+                <a href="#" class="header">finishTime: {{flight.finishTime}}</a>
+                <a href="#" class="header">ticketIds: {{flight.ticketIds}}</a>
 
                 <div class="meta">
-                    <span class="date">Places: {{flight['places']}}</span>
-                    <span class="date">Carrying: {{flight['carrying']}}</span>
+                    <!--    <span class="date">Places: {{flight['places']}}</span>
+                    <span class="date">Carrying: {{flight['carrying']}}</span>-->
                 </div>
             </div>
             <div class="extra content">

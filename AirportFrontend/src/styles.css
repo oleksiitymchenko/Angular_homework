@@ -5,11 +5,3 @@
     font-family: 'Century Gothic';
     color: black;
 }
-
-.contentMain {
-    min-height: calc(100vh - 105px);
-}
-
-.footer {
-    height: 50px;
-}
