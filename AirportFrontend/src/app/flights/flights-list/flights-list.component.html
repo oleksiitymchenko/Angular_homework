@@ -4,7 +4,7 @@
 
 </h1>
 <form *ngIf="creating" id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
-    <h4 class="ui dividing header">Departure creation</h4>
+    <h4 class="ui dividing header">Flight update</h4>
     <div class="three fields">
         <div class="field">
             <label>Flight number</label>
@@ -20,9 +20,9 @@
         <div class="field">
             <label>Start point</label>
             <div class="form-group">
-                <input type="time" class="form-control" name="model" placeholder="Start point" [(ngModel)]="flightCreating.startPoint" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
-                <div *ngIf="f.submitted && model.invalid">
-                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                <input type="text" class="form-control" name="start" placeholder="Start point" [(ngModel)]="flightCreating.startPoint" #start="ngModel" [ngClass]="{ 'is-invalid': f.submitted && start.invalid }" required/>
+                <div *ngIf="f.submitted && start.invalid">
+                    <div *ngIf="start.errors.required" class="ui pointing red basic label" style="width:100%">
                         Input start point
                     </div>
                 </div>
@@ -31,9 +31,9 @@
         <div class="field">
             <label>Finish point</label>
             <div class="form-group">
-                <input type="time" class="form-control" name="model" placeholder="End point" [(ngModel)]="flightCreating.finishPoint" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
-                <div *ngIf="f.submitted && model.invalid">
-                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                <input type="text" class="form-control" name="end" placeholder="End point" [(ngModel)]="flightCreating.finishPoint" #end="ngModel" [ngClass]="{ 'is-invalid': f.submitted && end.invalid }" required/>
+                <div *ngIf="f.submitted && end.invalid">
+                    <div *ngIf="end.errors.required" class="ui pointing red basic label" style="width:100%">
                         Input finish point
                     </div>
                 </div>
@@ -94,8 +94,8 @@
                 <div class="center aligned meta ">
                     <p>Start point: {{fl.startPoint}}</p>
                     <p>End point: {{fl.finishPoint}}</p>
-                    <p>Start time: {{fl.startTime}}</p>
-                    <p>End time: {{fl.finishTime}}</p>
+                    <p>Start time: {{fl.startTime.slice(-11)}}</p>
+                    <p>End time: {{fl.finishTime.slice(-11)}}</p>
                     <p *ngFor="let t of fl.ticketIds">
                         Ticket id: {{t}}
                     </p>
