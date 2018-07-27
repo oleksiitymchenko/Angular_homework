@@ -12,19 +12,28 @@ import { ActivatedRoute } from '@angular/router';
 export class PilotsDetailComponent implements OnInit {
     pilot:PilotDto;
     id:number;
-    creating:boolean;
+    allowchange:boolean;
 
   constructor(private service: PilotsService, private route: ActivatedRoute) {
+    this.pilot=new PilotDto(undefined,undefined, undefined,undefined);
+    console.log(this.pilot);
     this.route.params.subscribe(params=>this.id=params['id'])
     this.service.getOnePilot(this.id)
-    .subscribe((data:PilotDto)=>{this.pilot=data;console.log(this.pilot)});
-    this.creating = false;
+      .subscribe((data:PilotDto)=>
+      {this.pilot=data; 
+      (res:Response)=>console.log(res)});
+    this.allowchange = false;
   }
-  
-  pilotUpdate(id: number) {
-    const pilot = new PilotDto(5, " test ", "test ", 10);
-    this.service.updatePilot(id, pilot).subscribe();
 
+  onUpdateClick()
+  {
+    this.allowchange = true;
+  }
+
+
+  pilotSaveUpdates(id: number,pilot) {
+    console.log(pilot);
+    this.service.updatePilot(id, pilot).subscribe((res:Response)=>console.log(res));
   }
   ngOnInit() {
    

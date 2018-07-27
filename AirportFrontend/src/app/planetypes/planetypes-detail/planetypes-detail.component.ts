@@ -18,11 +18,8 @@ export class PlanetypesDetailComponent implements OnInit {
     this.planetype=new PlaneTypeDto(undefined,undefined,undefined,undefined);
     this.route.params.subscribe(params=>this.id=params['id']);
     this.service.getOnePlanetype(this.id)
-      .subscribe((data:PlaneTypeDto)=>
-          {this.planetype=data;
-            console.log(this.planetype)});
+      .subscribe((data:PlaneTypeDto)=>{this.planetype=data; (res:Response)=>console.log(res);} );
     this.allowchange=false;
-    console.log(this.planetype);
      }
 
   onUpdateClick()

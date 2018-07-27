@@ -1,13 +1,13 @@
 export default class PilotDto
 {
  constructor(Id,FirstName,LastName,Experience) {
-     this.Id=Id;
-     this.FirstName=FirstName;
-     this.LastName=LastName;
-     this.Experience = Experience;
+     this.id=Id;
+     this.firstName=FirstName;
+     this.lastName=LastName;
+     this.experience = Experience;
     }
-    public Id: number; 
-    public FirstName:string;
-    public LastName:string;
-    public Experience:number;
+    public id: number; 
+    public firstName:string;
+    public lastName:string;
+    public experience:number;
 }
