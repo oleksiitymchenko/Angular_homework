@@ -10,41 +10,47 @@ import StewardessDto from '../../shared/stewardessDto';
 export class StewardessListComponent implements OnInit {
 
   stewardesses: Array<StewardessDto>;
+  stewardessCreating:StewardessDto;
+  creating:boolean;
   constructor(private stewardessServise: StewardessService) {
     this.getAllStewardesses();
+    this.creating = false;
+    this.stewardessCreating = new StewardessDto(undefined,undefined,undefined,undefined );
+  }
+
+  creatingProcess()
+  {
+    const x = !this.creating;
+    this.creating=x;
   }
 
   stewardessDelete(id: number) {
     const number = this.stewardesses.findIndex(item => (item['id'] == id));
     this.stewardesses.splice(number, 1);
-    this.stewardessServise.deleteStewardess(id).subscribe();
+    this.stewardessServise.deleteStewardess(id)
+      .subscribe((res:Response)=>console.log(res));
   }
 
   getAllStewardesses() {
     this.stewardessServise.getStewardesses().subscribe((data: Array<StewardessDto>) => {
-      this.stewardesses = data;
+      this.stewardesses = data; (res:Response)=>console.log(res); console.log(this.stewardesses);
     });
   }
 
-  stewardessUpdate(id: number) {
-    const stewardess = new StewardessDto(5, " test name update", "test lastname", "06/05/1972");
-    this.stewardessServise.updateStewardess(id, stewardess).subscribe();
-    const updating = this.stewardesses.find(item => item['id'] == id);
-    updating['firstName'] = stewardess['FirstName'];
-    updating['lastName'] = stewardess['LastName'];
-    updating['dateOfBirth'] = stewardess['DateOfBirth'];
+  stewardessUpdate(id: number, stewardess) {
+    this.stewardessServise.updateStewardess(id, stewardess)
+      .subscribe((res:Response)=>{console.log(res);});
   }
 
-  stewardessCreate()
+  stewardessCreate(stewardess)
   {
-    const stewardess = new StewardessDto(5, " test create 3", "test create 3", "04/05/2003");
-    this.stewardessServise.createStewardess(stewardess).subscribe();
-    this.getAllStewardesses();
+    this.stewardessServise.createStewardess(stewardess)
+      .subscribe((res:Response)=>
+      {console.log(res); 
+        this.getAllStewardesses();});
   }
 
   ngOnInit() {
 
   }
-
-
 }
