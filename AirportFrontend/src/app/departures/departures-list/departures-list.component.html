@@ -1,27 +1,81 @@
-<p>
-    stewardess-list works!
-</p>
+<h1 class="ui center aligned header">
+    Departures list
+    <button class="ui green button" (click)="creatingProcess()" style="width:100%; height: 45px;">Сreate new departure </button>
 
-<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
-    <button class="ui primary button" (click)="departureCreate()"> Create new departure </button>
-
-    <div class="ui three stackable cards">
-        <div class="ui card" *ngFor="let dep of departures">
-            <div class="content">
-                <a href="#" class="header">Model: {{dep.crewId}}</a>
-                <a href="#" class="header">Model: {{dep.departureTime}}</a>
-                <a href="#" class="header">Model: {{dep.flightNumber}}</a>
-                <a href="#" class="header">Model: {{dep.planeId}}</a>
-
-                <div class="meta">
-                    <!--    <span class="date">Places: {{dep['places']}}</span>
-                    <span class="date">Carrying: {{dep['carrying']}}</span>-->
+</h1>
+<form *ngIf="creating" id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+    <h4 class="ui dividing header">Departure creation</h4>
+    <div class="three fields">
+        <div class="field">
+            <label>Flight number</label>
+            <div class="form-group">
+                <input type="text" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="departureCreating.flightNumber" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <div *ngIf="f.submitted && model.invalid">
+                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input flight number
+                    </div>
                 </div>
             </div>
-            <div class="extra content">
-                <button class="ui primary button" (click)="departureDelete(dep['id']) ">delete</button>
-                <button class="ui primary button" (click)="departureUpdate(dep['id'])"> update </button>
+        </div>
+        <div class="field">
+            <label>Time</label>
+            <div class="form-group">
+                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="departureCreating.departureTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <div *ngIf="f.submitted && model.invalid">
+                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input time
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+
+
+    <div class="two fields">
+        <div class="field">
+            <div class="form-group">
+                <label>Select crew</label>
+                <select class="form-control" name="crewId" [(ngModel)]="departureCreating.crewId" #crewId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && crewId.invalid }" required>
+                        <option *ngFor="let c of crews" [ngValue]="c.id">Id:{{c.id}} pilotId: {{c.pilotId}} stews: {{c.stewardressIds.length}}</option>
+                </select>
+                <div *ngIf="f.submitted && crewId.invalid">
+                    <div *ngIf="crewId.errors.required" class="ui pointing red basic label" style="width:100%">
+                        select plane
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="form-group">
+                <label>Select plane</label>
+                <select class="form-control" name="planeId" [(ngModel)]="departureCreating.planeId" #planeId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && planeId.invalid }" required>
+                                <option *ngFor="let c of planes" [ngValue]="c.id">Id:{{c.id}}  {{c.name}}</option >
+                </select>
+                <div *ngIf="f.submitted && planeId.invalid">
+                    <div *ngIf="planeId.errors.required" class="ui pointing red basic label" style="width:100%">
+                        select plane
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input class="ui green button" (click)="departureCreate(departureCreating)" type="submit" value="Save" form="myform" style="width: 100%;" />
+</form>
+
+<div class="ui container " style=" margin-bottom:10px; margin-top:20px; ">
+    <div class="ui three doubling cards ">
+        <div class="ui raised fluid card " *ngFor="let dep of departures">
+            <div class="ui top attached label ">Departure id: {{dep.id}}
+            </div>
+            <div class="content ">
+                <a href="/menu/departures/{{dep.id}} " class="center aligned header ">Flight number: {{dep['flightNumber']}}</a>
+                <div class="center aligned meta ">
+                    <p>Departure time: {{dep.departureTime}}</p>
+                    <p>Crew id: {{dep.crewId}}</p>
+                    <p>Plane id: {{dep.planeId}}</p>
+                </div>
+            </div>
+            <button class="ui red bottom attached button " (click)="departureDelete(dep['id']) ">Delete</button>
         </div>
     </div>
 </div>
