@@ -53,11 +53,7 @@ creatingProcess()
    
   }
 
-  flightSaveUpdates(id: number,flight:FlightDTO) {
-    this.service.updateFlight(id, flight).subscribe((res:Response)=>console.log(res));
-    const updating = this.flights.find(item => item['id'] == id);
-
-   }
+ 
   
  
    flightCreate(flight:FlightDTO)

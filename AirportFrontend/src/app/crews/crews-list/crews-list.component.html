@@ -1,22 +1,64 @@
-<p>
-    stewardess-list works!
-</p>
+<h1 class="ui center aligned header">
+    Crews list
+    <button class="ui green button" (click)="creatingProcess()" style="width:100%; height: 45px;">Сreate new crew </button>
 
-<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
-    <button class="ui primary button" (click)="crewCreate()"> Create new planetype </button>
+</h1>
 
-    <div class="ui three stackable cards">
-        <div class="ui card" *ngFor="let crew of crews">
-            <div class="content">
-                <a href="#" class="header">Pilot: {{crew['pilotId']}}</a>
-                <div class="meta">
-                    <span class="date">Stews: {{crew['stewardessIds']}}</span>
+<form *ngIf="creating" id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+    <h4 class="ui dividing header">Flight update</h4>
+    <div class="two fields">
+        <div class="field">
+            <div class="form-group">
+                <label>Select stewardess</label>
+                <div (click)="AddStewardess(stewardessId,stewardressids)" class="ui button">Add</div>
+
+                <select class="form-control" name="stewid" [(ngModel)]="stewardessId" #stewid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && stewid.invalid }" required>
+                                            <option *ngFor="let c of stewardesses" [ngValue]="c.id">Stew {{c.id}} {{c.firstName}} {{c.lastName}}
+                                                </option>
+                                    </select>
+                <div *ngIf="f.submitted && stewid.invalid">
+                    <div *ngIf="stewid.errors.required" class="ui pointing red basic label" style="width:100%">
+                        select stewardesses
+                    </div>
                 </div>
             </div>
-            <div class="extra content">
-                <button class="ui primary button" (click)="crewDelete(crew['id']) ">delete</button>
-                <button class="ui primary button" (click)="crewUpdate(crew['id'])"> update </button>
+        </div>
+        <div class="field">
+            <div class="form-group">
+                <label>Select pilot</label>
+                <select class="form-control" name="pilotid" [(ngModel)]="crewCreating.pilotId" #pilotid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && pilotid.invalid }" required>
+                                <option *ngFor="let c of pilots" [ngValue]="c.id">Id:{{c.id}} Model:{{c.model}}</option>
+                        </select>
+                <div *ngIf="f.submitted && pilotid.invalid">
+                    <div *ngIf="pilotid.errors.required" class="ui pointing red basic label" style="width:100%">
+                        select pilot
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <input class="ui green button" (click)="crewCreate(crewCreating)" type="submit" value="Save" form="myform" style="width: 100%;" />
+</form>-->
+
+<div class="ui container " style=" margin-bottom:10px; margin-top:20px; ">
+    <div class="ui three doubling cards ">
+        <div class="ui raised fluid card " *ngFor="let crew of crews">
+            <div class="ui top attached label ">
+                Crew id: {{crew['id']}}
+            </div>
+            <div class="content ">
+                <a href="/menu/crews/{{crew.id}} " class="center aligned header ">Stewardesses: {{crew.stewardressIds.length}}</a>
+                <div class="center aligned meta ">
+                    <p>Pilot id: {{crew.pilotId}}</p>
+
+                    <p *ngFor="let t of crew.stewardressIds">
+                        Stewardess id: {{t}}
+                    </p>
+
+                </div>
+            </div>
+            <button class="ui red bottom attached button " (click)="crewDelete(crew['id']) ">Delete</button>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-export default class PilotDto
+export default class StewardessDto
 {
  constructor(Id,FirstName,LastName,DateOfBirth) {
      this.id=Id;

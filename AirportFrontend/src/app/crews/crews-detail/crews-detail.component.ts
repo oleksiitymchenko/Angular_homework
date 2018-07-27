@@ -12,9 +12,14 @@ import CrewDto from '../../shared/crewDto';
 export class CrewsDetailComponent implements OnInit {
   crew:CrewDto;
     id:number;
+  stewardessids: number[];
 
   constructor(private service: CrewsService, private route: ActivatedRoute) { 
   }
+  crewUpdate(id: number,crew:CrewDto) {
+    crew.stewardessIds=this.stewardessids;
+    this.service.updateCrew(id, crew).subscribe();
+   }
 
   ngOnInit() {
     this.route.params.subscribe(params=>this.id=params['id'])

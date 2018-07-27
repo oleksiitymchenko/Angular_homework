@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CrewsService } from '../crews.service';
 import CrewDto from '../../shared/crewDto';
+import StewardessDto from 'src/app/shared/stewardessDto';
+import { StewardessService } from 'src/app/stewardess/stewardess.service';
+import { PilotsService } from 'src/app/pilots/pilots.service';
+import PilotDto from 'src/app/shared/pilotDto';
 
 @Component({
   selector: 'app-crews-list',
@@ -10,8 +14,20 @@ import CrewDto from '../../shared/crewDto';
 export class CrewsListComponent implements OnInit {
 
   crews: Array<CrewDto>;
-  constructor(private service: CrewsService) {
+  crewCreating:CrewDto;
+  stewardessids:number[];
+  stewardessId:number;
+  stewardesses:Array<StewardessDto>;
+  pilots:Array<PilotDto>;
+  creating:boolean;
+
+  constructor(private service: CrewsService, private stserv:StewardessService, private pserv:PilotsService) {
     this.getAllCrews();
+    this.stewardessids=[];
+    this.stserv.getStewardesses().subscribe((data:Array<StewardessDto>)=>this.stewardesses=data);
+    this.pserv.getPilots().subscribe((data:Array<PilotDto>)=>this.pilots=data);
+    this.creating=false;
+    this.crewCreating=new CrewDto(undefined,undefined,undefined);
   }
 
   crewDelete(id: number) {
@@ -19,6 +35,17 @@ export class CrewsListComponent implements OnInit {
     this.crews.splice(number, 1);
     this.service.deleteCrew(id).subscribe();
   }
+  AddStewardesses(id: number,stewardessids:number[])
+  {
+    stewardessids.push(id);
+    const number = this.stewardesses.findIndex(item => (item['id'] == id));
+    this.stewardesses.splice(number, 1);
+ }
+
+creatingProcess()
+{
+  this.creating=true;
+}
 
   getAllCrews() {
     this.service.getCrews().subscribe((data: Array<CrewDto>) => {
@@ -28,17 +55,10 @@ export class CrewsListComponent implements OnInit {
    
   }
 
-  crewUpdate(id: number) {
-    const crew = new CrewDto(5, "2",[26,27]);
-    this.service.updateCrew(id, crew).subscribe();
-    const updating = this.crews.find(item => item['id'] == id);
-    updating.pilotId= crew.pilotId;
-    updating.stewardessIds = crew.stewardessIds;
-   }
-
-   crewCreate()
+ 
+   crewCreate(crew:CrewDto)
   {
-    const crew = new CrewDto(5, "1",[2,8]);
+    crew.stewardessIds=this.stewardessids;
     this.service.createCrew(crew).subscribe(()=>this.getAllCrews());
   }
   ngOnInit() {
