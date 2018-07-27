@@ -1,0 +1,10 @@
+.center.aligned.buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+
+.center.aligned.buttons .ui.primary.button {
+    width: 45%;
+}

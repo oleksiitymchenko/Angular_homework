@@ -12,6 +12,7 @@ export class TicketsListComponent implements OnInit {
   tickets: Array<TicketDto>;
   ticketCreating:TicketDto;
   creating:boolean;
+
   constructor(private ticketsServise: TicketsService) {
     this.getAllTickets();
     this.ticketCreating=new TicketDto(undefined,undefined,undefined);
@@ -32,9 +33,10 @@ export class TicketsListComponent implements OnInit {
   }
 
   getAllTickets() {
-    this.ticketsServise.getTickets().subscribe((data: Array<TicketDto>) => {
-      this.tickets = data;
-      console.log(this.tickets);
+    this.ticketsServise.getTickets()
+      .subscribe((data: Array<TicketDto>) => {
+        this.tickets = data;
+        (res:Response)=>console.log(res);
     });
    
   }
@@ -43,10 +45,6 @@ export class TicketsListComponent implements OnInit {
   {
     this.ticketsServise.createTicket(ticket).subscribe();
     this.getAllTickets();
-  }
-
-  onSubmit()
-  {
   }
 
   ngOnInit() {

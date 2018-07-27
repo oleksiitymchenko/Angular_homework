@@ -37,21 +37,20 @@
 </div>
 
 <div *ngIf="!allowchange" class="ui items">
-    <div class="item">
+    <div class="ui raised card">
         <div class="ui top attached label">Ticket id: {{ticket['id']}}</div>
         <div class="content">
-            <div class="header">Flight number: {{ticket.flightNumber}}</div>
-            <div class="meta">
-                <span class="price">{{ticket.price}}$</span>
+            <a href="/menu/tickets/{{ticket.id}}" class="center aligned header">Flight number: {{ticket['flightNumber']}}</a>
+            <div class="center aligned meta">
+                <span class="date">Price: {{ticket['price']}}</span>
             </div>
         </div>
+        <div class="center aligned buttons">
+            <a href="./menu/tickets"><button class="ui left labeled icon button">
+                    <i class="left arrow icon"></i>
+                    Back to list
+                  </button></a>
+            <div class="ui primary button" (click)="onUpdateClick()">Update</div>
+        </div>
     </div>
-    <div>
-        <a href="./menu/tickets"><button class="ui left labeled icon button">
-            <i class="left arrow icon"></i>
-            Back to list
-          </button></a>
-        <div class="ui primary button" (click)="onUpdateClick()">Update</div>
-    </div>
-
 </div>
