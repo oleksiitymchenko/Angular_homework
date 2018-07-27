@@ -1,6 +1,85 @@
-<p>
-    plane-detail works!
+<div *ngIf="allowchange">
+    <br>
+    <form id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+        <h4 class="ui dividing header">Planes updating</h4>
+        <div class="three fields">
+            <div class="field">
+                <label>Plane name</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="model" placeholder="Name" [(ngModel)]="plane.name" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                    <div *ngIf="f.submitted && model.invalid">
+                        <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input name
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Timespan</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="model" placeholder="Timespan" [(ngModel)]="plane.lifeTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                    <div *ngIf="f.submitted && model.invalid">
+                        <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input timespan
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Created</label>
+                <div class="form-group">
+                    <input type="date" class="form-control" name="time" placeholder="Created date" [(ngModel)]="plane.created" #time="ngModel" [ngClass]="{ 'is-invalid': f.submitted && time.invalid }" required/>
+                    <div *ngIf="f.submitted && time.invalid">
+                        <div *ngIf="time.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input created
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <button onclick=""></button>
-</p>
-<h1> {{plane.name}}</h1>
+        <div class="two fields">
+            <div class="field">
+                <div class="form-group">
+                    <label>Select plane type</label>
+                    <select class="form-control" name="pltype" [(ngModel)]="plane.typePlaneId" #pltype="ngModel" [ngClass]="{ 'is-invalid': f.submitted && pltype.invalid }" required>
+                                    <option *ngFor="let c of planetypes" [ngValue]="c.id">Id:{{c.id}} model: {{c.model}}</option>
+                            </select>
+                    <div *ngIf="f.submitted && pltype.invalid">
+                        <div *ngIf="pltype.errors.required" class="ui pointing red basic label" style="width:100%">
+                            select planetype
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div><a href="./menu/planes"><button class="ui left labeled icon button">
+                            <i class="left arrow icon"></i>
+                            Back to list
+                          </button></a>
+        <input class="ui green button" (click)="planeSaveUpdates(plane['id'],plane)" type="submit" value="Save" form="myform" />
+    </div>
+</div>
+
+<div *ngIf="!allowchange" class="ui cards">
+    <div class="ui raised card">
+        <div class="ui top attached label">Plane id: {{plane['id']}}</div>
+        <div class="content">
+            <a href="/menu/planes/{{plane.id}}" class="center aligned header">Name: {{plane['name']}}</a>
+            <div class="center aligned meta">
+                <p></p>
+                <p class="date">Created: {{plane.created}}</p>
+                <p>Timespan :{{plane.lifeTime.slice(0,2)}} years</p>
+                <p>Planetype model: {{planetype.model}} places:{{planetype.places}} carrying: {{planetype.carrying}}</p>
+            </div>
+        </div>
+        <div class="center aligned buttons">
+            <a href="./menu/planes"><button class="ui left labeled icon button">
+                                        <i class="left arrow icon"></i>
+                                        Back to list
+                                      </button></a>
+            <div class="ui primary button" (click)="onUpdateClick()">Update</div>
+        </div>
+    </div>
+</div>

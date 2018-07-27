@@ -1,0 +1,24 @@
+.center.aligned.buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 6px;
+}
+
+.center.aligned.buttons .ui.primary.button {
+    width: 45%;
+}
+
+.ui.raised.card {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .ui.raised.card {
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 40px;
+    }
+}
