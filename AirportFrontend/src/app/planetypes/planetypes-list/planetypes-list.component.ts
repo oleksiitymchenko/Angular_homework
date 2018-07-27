@@ -33,15 +33,6 @@ export class PlanetypesListComponent implements OnInit {
     this.planetypesServise.deletePlanetype(id).subscribe();
   }
 
-  planetypeUpdate(id: number) {
-    const planetype = new PlaneTypeDto(5, "model update",200,2000);
-    this.planetypesServise.updatePlanetype(id, planetype).subscribe();
-    const updating = this.planetypes.find(item => item['id'] == id);
-    updating['model'] = planetype['model'];
-    updating['places'] = planetype['places'];
-    updating['carrying'] = planetype['carrying'];
-   }
-
    planetypeCreate(planetype:PlaneTypeDto)
   {
     this.planetypesServise.createPlanetype(planetype)

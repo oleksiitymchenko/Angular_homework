@@ -16,6 +16,7 @@ export class TicketsDetailComponent implements OnInit {
     allowchange:boolean;
 
   constructor(private service: TicketsService, private route: ActivatedRoute) { 
+    this.ticket= new TicketDto(undefined,undefined,undefined);
     this.route.params.subscribe(params=>this.id=params['id']);
     this.service.getOneTicket(this.id)
       .subscribe((data:TicketDto)=>
@@ -30,8 +31,6 @@ export class TicketsDetailComponent implements OnInit {
   }
 
   ticketSaveUpdates(id: number,ticket) {
-    console.log(id);
-    console.log(ticket);
     this.service.updateTicket(id, ticket).
       subscribe((res:Response)=>console.log(res));
    }

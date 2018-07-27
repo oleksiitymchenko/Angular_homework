@@ -52,8 +52,8 @@
             <div class="content">
                 <a href="/menu/planetypes/{{type.id}}" class="center aligned header">Model: {{type['model']}}</a>
                 <div class="center aligned meta">
-                    <span class="places">Places: {{type['places']}}</span>
-                    <span class="carrying">Carrying: {{type['carrying']}}</span>
+                    <p class="carrying">Carrying: {{type['carrying']}}</p>
+                    <p class="places">Places: {{type['places']}}</p>
                 </div>
             </div>
             <button class="ui red bottom attached button" (click)="planetypeDelete(type['id'])">Delete</button>

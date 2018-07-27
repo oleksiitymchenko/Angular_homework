@@ -1,6 +1,69 @@
-<p>
-    ticket-detail works!
+<div *ngIf="allowchange">
+    <br>
+    <form id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+        <h4 class="ui dividing header">Planetype {{planetype.id}} information</h4>
+        <div class="three fields">
+            <div class="field">
+                <label>Plane type model</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="model" placeholder="Model" [(ngModel)]="planetype.model" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                    <div *ngIf="f.submitted && model.invalid">
+                        <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input model
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Plane type places</label>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="places" placeholder="Places" [(ngModel)]="planetype.places" #places="ngModel" [ngClass]="{ 'is-invalid': f.submitted && places.invalid }" required/>
+                    <div *ngIf="f.submitted && places.invalid">
+                        <div *ngIf="places.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input places
+                        </div>
+                    </div>
+                </div>
 
-    <button onclick=""></button>
-</p>
-<h1> {{planetype.model}}</h1>
+            </div>
+            <div class="field">
+                <label>Plane type carrying amount</label>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="carrying" placeholder="Carrying amount" [(ngModel)]="planetype.carrying" #carrying="ngModel" [ngClass]="{ 'is-invalid': f.submitted && carrying.invalid }" required/>
+                    <div *ngIf="f.submitted && carrying.invalid">
+                        <div *ngIf="carrying.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input carrying amount
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <div><a href="./menu/planetypes"><button class="ui left labeled icon button">
+            <i class="left arrow icon"></i>
+            Back to list
+          </button></a>
+        <input class="ui green button" (click)="planetypeSaveUpdates(planetype['id'],planetype)" type="submit" value="Save" form="myform" />
+    </div>
+</div>
+
+<div *ngIf="!allowchange" class="ui cards">
+    <div class="ui raised card">
+        <div class="ui top attached label">Plane type id: {{planetype['id']}}</div>
+        <div class="content">
+            <a href="/menu/planetypes/{{planetype.id}}" class="center aligned header">Plane type model: {{planetype['model']}}</a>
+            <div class="center aligned meta">
+                <p class="date">Places: {{planetype['places']}}</p>
+                <p class="date">Carrying: {{planetype['carrying']}}</p>
+            </div>
+        </div>
+        <div class="center aligned buttons">
+            <a href="./menu/planetypes"><button class="ui left labeled icon button">
+                        <i class="left arrow icon"></i>
+                        Back to list
+                      </button></a>
+            <div class="ui primary button" (click)="onUpdateClick()">Update</div>
+        </div>
+    </div>
+</div>
