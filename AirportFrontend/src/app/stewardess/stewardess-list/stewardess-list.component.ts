@@ -13,9 +13,9 @@ export class StewardessListComponent implements OnInit {
   stewardessCreating:StewardessDto;
   creating:boolean;
   constructor(private stewardessServise: StewardessService) {
-    this.getAllStewardesses();
-    this.creating = false;
     this.stewardessCreating = new StewardessDto(undefined,undefined,undefined,undefined );
+    this.creating = false;
+    this.getAllStewardesses();
   }
 
   creatingProcess()
@@ -35,6 +35,7 @@ export class StewardessListComponent implements OnInit {
     this.stewardessServise.getStewardesses().subscribe((data: Array<StewardessDto>) => {
       this.stewardesses = data; (res:Response)=>console.log(res); console.log(this.stewardesses);
     });
+    console.log(this.stewardesses);
   }
 
   stewardessUpdate(id: number, stewardess) {
