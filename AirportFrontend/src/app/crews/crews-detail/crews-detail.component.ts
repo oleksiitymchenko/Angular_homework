@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CrewsService } from '../crews.service';
 import { ActivatedRoute } from '@angular/router';
 import CrewDto from '../../shared/crewDto';
+import StewardessDto from 'src/app/shared/stewardessDto';
+import PilotDto from 'src/app/shared/pilotDto';
+import { StewardessService } from 'src/app/stewardess/stewardess.service';
+import { PilotsService } from 'src/app/pilots/pilots.service';
 
 @Component({
   selector: 'app-crews-detail',
@@ -11,71 +15,44 @@ import CrewDto from '../../shared/crewDto';
 })
 export class CrewsDetailComponent implements OnInit {
   crew:CrewDto;
-    id:number;
+  id:number;
   stewardessids: number[];
+  stewardessId:number;
+  stewardesses:Array<StewardessDto>;
+  pilots:Array<PilotDto>;
+  allowchange:boolean;
 
-  constructor(private service: CrewsService, private route: ActivatedRoute) { 
+  constructor(private service: CrewsService,private stserv:StewardessService, private pserv:PilotsService, private route: ActivatedRoute) { 
+    this.route.params.subscribe(params=>this.id=params['id'])
+    this.service.getOneCrew(this.id)
+    .subscribe((data:CrewDto)=>{this.crew=data;console.log(this.crew);
+      this.stserv.getStewardesses().subscribe((data:Array<StewardessDto>)=>this.stewardesses=data);
+      this.pserv.getPilots().subscribe((data:Array<PilotDto>)=>this.pilots=data);});
+    this.stewardessids=[undefined];
+    
+    this.allowchange=false;
   }
-  crewUpdate(id: number,crew:CrewDto) {
+  crewSaveUpdates(id: number,crew:CrewDto) {
+    this.stewardessids.shift();
     crew.stewardessIds=this.stewardessids;
     this.service.updateCrew(id, crew).subscribe();
    }
-
+   onUpdateClick()
+   {
+     this.allowchange=true;
+   } 
+   AddStewardess(id: number,stewardessids:number[])
+   {
+     stewardessids.push(id);
+     console.log(stewardessids);
+     const number = this.stewardesses.findIndex(item => (item['id'] == id));
+     this.stewardesses.splice(number, 1);
+  }
   ngOnInit() {
-    this.route.params.subscribe(params=>this.id=params['id'])
-    this.service.getOneCrew(this.id)
-    .subscribe((data:CrewDto)=>{this.crew=data;console.log(this.crew)});
+  
   }
-}
-import { Component, OnInit } from '@angular/core';
-import { FlightsService } from '../flights.service';
-import { ActivatedRoute } from '@angular/router';
-import FlightDTO from '../../shared/flightDto';
-import TicketDto from 'src/app/shared/ticketDto';
-import { TicketsService } from 'src/app/tickets/tickets.service';
-
-@Component({
-  selector: 'app-flights-detail',
-  templateUrl: './flights-detail.component.html',
-  styleUrls: ['./flights-detail.component.css'],
-  providers: [FlightsService]
-})
-export class FlightsDetailComponent implements OnInit {
-    flight:FlightDTO;
-    id:number;
-    tickets: Array<TicketDto>;
-    ticketids:number[];
-    ticketid : number;
-    allowchange:boolean;
-
-  constructor(private service: FlightsService, private tserv:TicketsService,private route: ActivatedRoute) { 
-    this.route.params.subscribe(params=>this.id=params['id'])
-    this.service.getOneFlight(this.id)
-    .subscribe((data:FlightDTO)=>{this.flight=data;
-                                  console.log(this.flight);
-                                  this.tserv.getTickets().subscribe(
-                                        (data:Array<TicketDto>)=>this.tickets=data);});
-    this.allowchange=false;
-    this.ticketids=[];
-  }
-  AddTicket(id: number,ticketids:number[])
+  onSubmit()
   {
 
-    ticketids.push(id);
-    const number = this.tickets.findIndex(item => (item['id'] == id));
-    this.tickets.splice(number, 1);
- }
-  onUpdateClick()
-  {
-    this.allowchange=true;
-  }
-  flightSaveUpdates(id: number,flight:FlightDTO) {
-    flight.ticketIds=this.ticketids;
-    this.service.updateFlight(id, flight).subscribe((res:Response)=>console.log(res));
-    
-
-   }
-  ngOnInit() {
-    
   }
 }

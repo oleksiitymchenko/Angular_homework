@@ -1,6 +1,72 @@
-<p>
-    ticket-detail works!
+<div *ngIf="allowchange">
+    <br>
+    <form id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+        <h4 class="ui dividing header">Flight update</h4>
+        <div class="two fields">
+            <div class="field">
+                <div class="form-group">
+                    <label>Select stewardess</label>
 
-    <button onclick=""></button>
-</p>
-<h1> {{crew.pilotId}}</h1>
+                    <select class="form-control" name="stewid" [(ngModel)]="stewardessId" #stewid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && stewid.invalid }" required>
+                                                        <option *ngFor="let c of stewardesses" [ngValue]="c.id">Stew {{c.id}} {{c.firstName}} {{c.lastName}}
+                                                            </option>
+                                                </select>
+                    <div (click)="AddStewardess(stewardessId,stewardessids)" class="ui button">Add</div>
+
+                    <div *ngIf="f.submitted && stewid.invalid">
+                        <div *ngIf="stewid.errors.required" class="ui pointing red basic label" style="width:100%">
+                            select stewardesses
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="form-group">
+                    <label>Select pilot</label>
+                    <select class="form-control" name="pilotid" [(ngModel)]="crew.pilotId" #pilotid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && pilotid.invalid }" required>
+                                            <option *ngFor="let c of pilots" [ngValue]="c.id">Id:{{c.id}} Model:{{c.model}}</option>
+                                    </select>
+                    <div *ngIf="f.submitted && pilotid.invalid">
+                        <div *ngIf="pilotid.errors.required" class="ui pointing red basic label" style="width:100%">
+                            select pilot
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <div><a href="./menu/crews"><button class="ui left labeled icon button">
+                                <i class="left arrow icon"></i>
+                                Back to list
+                              </button></a>
+        <input class="ui green button" (click)="crewSaveUpdates(crew['id'],crew)" type="submit" value="Save" form="myform" />
+    </div>
+</div>
+
+<div *ngIf="!allowchange" class="ui cards">
+    <div class="ui raised card ">
+        <div class="ui top attached label ">
+            Crew id: {{crew['id']}}
+        </div>
+        <div class="content ">
+            <a href="/menu/crews/{{crew.id}} " class="center aligned header ">Stewardesses: {{crew.stewardressIds.length}}</a>
+            <div class="center aligned meta ">
+                <p>Pilot id: {{crew.pilotId}}</p>
+
+                <p *ngFor="let t of crew.stewardressIds">
+                    Stewardess id: {{t}}
+                </p>
+
+            </div>
+        </div>
+        <div class="center aligned buttons">
+
+            <a href="./menu/crews"><button class="ui left labeled icon button">
+                        <i class="left arrow icon"></i>
+                        Back to list
+                      </button></a>
+            <div class="ui primary button" (click)="onUpdateClick()">Update</div>
+        </div>
+    </div>
+</div>

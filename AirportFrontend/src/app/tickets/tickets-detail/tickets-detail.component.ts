@@ -34,7 +34,10 @@ export class TicketsDetailComponent implements OnInit {
     this.service.updateTicket(id, ticket).
       subscribe((res:Response)=>console.log(res));
    }
-
+   onSubmit()
+   {
+ 
+   }
   ngOnInit() {
   
   }
