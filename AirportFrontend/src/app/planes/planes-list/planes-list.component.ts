@@ -26,7 +26,6 @@ export class PlanesListComponent implements OnInit {
   {
     const x = !this.creating;
     this.creating=x;
-    console.log(this.planetypes);
   }
 
   planeDelete(id: number) {
@@ -38,17 +37,17 @@ export class PlanesListComponent implements OnInit {
   getAllPlanes() {
     this.planesServise.getPlanes().subscribe((data: Array<PlaneDto>) => {
       this.planes = data;
-      console.log(data);
-      console.log(this.planes);
+      console.log(this.planes)
     });
-   
+    console.log(this.planes);   
   }
 
    planeCreate(plane:PlaneDto)
   {
-    this.planesServise.createPlane(plane).subscribe(()=>{this.getAllPlanes(); console.log("ok");});
+    this.planesServise.createPlane(plane).subscribe((res:Response)=>{this.getAllPlanes(); console.log("ok");});
   }
-  ngOnInit() {
+  ngOnInit() {    this.getAllPlanes();
+
   }
 
 
