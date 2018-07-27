@@ -1,5 +1,5 @@
 <h1 class="ui center aligned header">
-    Departures list
+    Flights list
     <button class="ui green button" (click)="creatingProcess()" style="width:100%; height: 45px;">Сreate new departure </button>
 
 </h1>
@@ -65,16 +65,17 @@
 <div class="ui container " style=" margin-bottom:10px; margin-top:20px; ">
     <div class="ui three doubling cards ">
         <div class="ui raised fluid card " *ngFor="let fl of flights">
-            <div class="ui top attached label ">Flight id: {{fl.id}}
+            <div class="ui top attached label ">
+                Flight id: {{fl['id']}}
             </div>
             <div class="content ">
-                <a href="/menu/tickets/{{dep.id}} " class="center aligned header ">Flight number: {{fl['number']}}</a>
+                <a href="/menu/flights/{{fl.id}} " class="center aligned header ">Flight number: {{fl['number']}}</a>
                 <div class="center aligned meta ">
                     <p>Start point: {{fl.startPoint}}</p>
                     <p>End point: {{fl.finishPoint}}</p>
-                    <p>Start time: {{f.startTime}}</p>
-                    <p>End time: {{f.finishTime}}</p>
-                    <p *ngFor="let t of f.ticketIds">
+                    <p>Start time: {{fl.startTime}}</p>
+                    <p>End time: {{fl.finishTime}}</p>
+                    <p *ngFor="let t of fl.ticketIds">
                         Ticket id: {{t}}
                     </p>
 

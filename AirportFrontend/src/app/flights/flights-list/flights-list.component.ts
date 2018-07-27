@@ -34,7 +34,7 @@ export class FlightsListComponent implements OnInit {
   getAllFlights() {
     this.service.getFlights().subscribe((data: Array<FlightDTO>) => {
       this.flights = data;
-     /* console.log(this.flights);*/
+  console.log(this.flights);
     });
    
   }
