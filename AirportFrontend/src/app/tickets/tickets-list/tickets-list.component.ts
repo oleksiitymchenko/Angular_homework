@@ -43,7 +43,8 @@ export class TicketsListComponent implements OnInit {
 
   ticketCreate(ticket:TicketDto)
   {
-    this.ticketsServise.createTicket(ticket).subscribe();
+    this.ticketsServise.createTicket(ticket)
+      .subscribe((res:Response)=>console.log(res));
     this.getAllTickets();
   }
 
