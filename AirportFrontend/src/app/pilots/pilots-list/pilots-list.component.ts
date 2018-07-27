@@ -51,6 +51,9 @@ export class PilotsListComponent implements OnInit {
   ngOnInit() {
 
   }
+  onSubmit(){
+  
+  }
 
 
 }

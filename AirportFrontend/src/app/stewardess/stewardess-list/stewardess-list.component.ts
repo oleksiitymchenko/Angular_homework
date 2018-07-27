@@ -54,4 +54,7 @@ export class StewardessListComponent implements OnInit {
   ngOnInit() {
 
   }
+  onSubmit(){
+  
+  }
 }

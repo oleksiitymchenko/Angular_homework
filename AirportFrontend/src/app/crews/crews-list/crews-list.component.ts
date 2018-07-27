@@ -23,7 +23,7 @@ export class CrewsListComponent implements OnInit {
 
   constructor(private service: CrewsService, private stserv:StewardessService, private pserv:PilotsService) {
     this.getAllCrews();
-    this.stewardessids=[];
+    this.stewardessids=[undefined];
     this.stserv.getStewardesses().subscribe((data:Array<StewardessDto>)=>this.stewardesses=data);
     this.pserv.getPilots().subscribe((data:Array<PilotDto>)=>this.pilots=data);
     this.creating=false;
@@ -35,9 +35,10 @@ export class CrewsListComponent implements OnInit {
     this.crews.splice(number, 1);
     this.service.deleteCrew(id).subscribe();
   }
-  AddStewardesses(id: number,stewardessids:number[])
+  AddStewardess(id: number,stewardessids:number[])
   {
     stewardessids.push(id);
+    console.log(stewardessids);
     const number = this.stewardesses.findIndex(item => (item['id'] == id));
     this.stewardesses.splice(number, 1);
  }
@@ -52,17 +53,19 @@ creatingProcess()
       this.crews = data;
       console.log(this.crews);
     });
-   
   }
 
- 
    crewCreate(crew:CrewDto)
   {
+    this.stewardessids.shift();
     crew.stewardessIds=this.stewardessids;
+    console.log(crew);
     this.service.createCrew(crew).subscribe(()=>this.getAllCrews());
   }
   ngOnInit() {
   }
-
+onSubmit(){
+  
+}
 
 }

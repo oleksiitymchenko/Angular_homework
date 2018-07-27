@@ -10,12 +10,13 @@
         <div class="field">
             <div class="form-group">
                 <label>Select stewardess</label>
-                <div (click)="AddStewardess(stewardessId,stewardressids)" class="ui button">Add</div>
 
                 <select class="form-control" name="stewid" [(ngModel)]="stewardessId" #stewid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && stewid.invalid }" required>
                                             <option *ngFor="let c of stewardesses" [ngValue]="c.id">Stew {{c.id}} {{c.firstName}} {{c.lastName}}
                                                 </option>
                                     </select>
+                <div (click)="AddStewardess(stewardessId,stewardessids)" class="ui button">Add</div>
+
                 <div *ngIf="f.submitted && stewid.invalid">
                     <div *ngIf="stewid.errors.required" class="ui pointing red basic label" style="width:100%">
                         select stewardesses
@@ -39,7 +40,7 @@
     </div>
 
     <input class="ui green button" (click)="crewCreate(crewCreating)" type="submit" value="Save" form="myform" style="width: 100%;" />
-</form>-->
+</form>
 
 <div class="ui container " style=" margin-bottom:10px; margin-top:20px; ">
     <div class="ui three doubling cards ">

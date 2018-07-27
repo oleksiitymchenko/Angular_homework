@@ -49,4 +49,7 @@ export class PlanetypesListComponent implements OnInit {
 
   ngOnInit() {
   }
+  onSubmit(){
+  
+  }
 }

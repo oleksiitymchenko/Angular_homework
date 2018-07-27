@@ -50,6 +50,8 @@ export class TicketsListComponent implements OnInit {
   ngOnInit() {
 
   }
-
+  onSubmit(){
+  
+  }
 
 }
