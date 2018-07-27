@@ -18,24 +18,26 @@ export class FlightsListComponent implements OnInit {
   ticketids:number[];
   ticketid : number;
   creating:boolean;
-  allowchange: boolean;
 
   constructor(private service: FlightsService, private tserv:TicketsService) {
+    this.ticketids=undefined;
     this.getAllFlights();
     this.creating=false;
     tserv.getTickets().subscribe((data:Array<TicketDto>)=>this.tickets=data);
     this.flightCreating=new FlightDTO(undefined,undefined,undefined,undefined,undefined,undefined,undefined);
   }
-  AddTicket(id: number)
+  AddTicket(id: number,ticketids:number[])
   {
-    this.ticketids.push(id);
+
+    ticketids.push(id);
     const number = this.tickets.findIndex(item => (item['id'] == id));
     this.tickets.splice(number, 1);
  }
- /* getAllTickets(flights:Array<FlightDTO>)
-  {
-    this.tickets.push(flights.forEach((value)=>console.log(value)))
-  }*/
+
+creatingProcess()
+{
+  this.creating=true;
+}
 
  flightDelete(id: number) {
     const number = this.flights.findIndex(item => (item['id'] == id));
@@ -56,10 +58,7 @@ export class FlightsListComponent implements OnInit {
     const updating = this.flights.find(item => item['id'] == id);
 
    }
-   onUpdateClick()
-   {
-     this.allowchange = true;
-   }
+  
  
    flightCreate(flight:FlightDTO)
   {

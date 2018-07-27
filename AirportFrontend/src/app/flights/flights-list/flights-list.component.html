@@ -20,7 +20,7 @@
         <div class="field">
             <label>Start point</label>
             <div class="form-group">
-                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.startPoint" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <input type="time" class="form-control" name="model" placeholder="Start point" [(ngModel)]="flightCreating.startPoint" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
                 <div *ngIf="f.submitted && model.invalid">
                     <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
                         Input start point
@@ -31,7 +31,7 @@
         <div class="field">
             <label>Finish point</label>
             <div class="form-group">
-                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.finishPoint" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <input type="time" class="form-control" name="model" placeholder="End point" [(ngModel)]="flightCreating.finishPoint" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
                 <div *ngIf="f.submitted && model.invalid">
                     <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
                         Input finish point
@@ -44,7 +44,7 @@
         <div class="field">
             <label>Start time</label>
             <div class="form-group">
-                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.startTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <input type="time" class="form-control" name="model" placeholder="Start time" [(ngModel)]="flightCreating.startTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
                 <div *ngIf="f.submitted && model.invalid">
                     <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
                         Input start time
@@ -55,7 +55,7 @@
         <div class="field">
             <label>End time</label>
             <div class="form-group">
-                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.finishTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <input type="time" class="form-control" name="model" placeholder="End time" [(ngModel)]="flightCreating.finishTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
                 <div *ngIf="f.submitted && model.invalid">
                     <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
                         Input end time
@@ -67,8 +67,11 @@
     <div class="field">
         <div class="form-group">
             <label>Select ticket</label>
+            <div (click)="AddTicket(ticketid,ticketids)" class="ui button">Add</div>
+
             <select class="form-control" name="ticketid" [(ngModel)]="ticketid" #crewId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && crewId.invalid }" required>
-                            <option *ngFor="let c of tickets" [ngValue]="c.id"><button (click)="AddTicket(c.id)"class="ui button">Add ticket {{c.id}} {{c.flightNumber}}</button></option>
+                            <option *ngFor="let c of tickets" [ngValue]="c.id">ticket {{c.id}} {{c.flightNumber}}
+                                </option>
                     </select>
             <div *ngIf="f.submitted && ticketid.invalid">
                 <div *ngIf="ticketid.errors.required" class="ui pointing red basic label" style="width:100%">
