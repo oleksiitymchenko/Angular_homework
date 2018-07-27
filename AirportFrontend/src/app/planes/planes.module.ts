@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {PlanesDetailComponent} from './planes-detail/planes-detail.component';
 import {PlanesListComponent} from './planes-list/planes-list.component';
 import {PlanesService } from './planes.service';
+import { PlanetypesService } from '../planetypes/planetypes.service';
 
 @NgModule({
   imports: [
@@ -10,7 +11,7 @@ import {PlanesService } from './planes.service';
   ],
   declarations: [PlanesDetailComponent,
     PlanesListComponent],
-  providers : [PlanesService]
+  providers : [PlanesService, PlanetypesService]
 })
 
 

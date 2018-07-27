@@ -16,6 +16,10 @@ export class PlanesDetailComponent implements OnInit {
   constructor(private service: PlanesService, private route: ActivatedRoute) { 
   }
 
+  planeSaveUpdates(id: number,plane) {
+    this.service.updatePlane(id, plane).subscribe();
+
+   }
   ngOnInit() {
     this.route.params.subscribe(params=>this.id=params['id'])
     this.service.getOnePlane(this.id)
