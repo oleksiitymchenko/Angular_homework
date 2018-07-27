@@ -1,22 +1,60 @@
-<p>
-    pilots-list works!
-</p>
+<h1 class="ui center aligned header">
+    Pilots list
+    <button class="ui green button" (click)="creatingProcess()" style="width:100%; height: 45px;">Сreate new pilot </button>
 
-<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
-    <button class="ui primary button" (click)="pilotCreate(pilot.id)"> create </button>
-
-    <div class="ui three stackable cards">
-        <div class="ui card" *ngFor="let pilot of pilots">
-            <div class="content">
-                <a href="#" class="header">{{pilot.firstName}} {{pilot.lastName}}</a>
-                <div class="meta">
-                    <span class="date">Experince: {{pilot.experience}}</span>
+</h1>
+<form *ngIf="creating" id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+    <h4 class="ui dividing header">Pilot creation</h4>
+    <div class="three fields">
+        <div class="field">
+            <label>Firstname</label>
+            <div class="form-group">
+                <input type="text" class="form-control" name="model" placeholder="Firstname" [(ngModel)]="pilotCreating.firstName" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <div *ngIf="f.submitted && model.invalid">
+                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input Firstname
+                    </div>
                 </div>
             </div>
-            <div class="extra content">
-                <button class="ui primary button" (click)="pilotDelete(pilot.id) ">delete</button>
-                <button class="ui primary button" (click)="pilotUpdate(pilot.id)"> update </button>
+        </div>
+        <div class="field">
+            <label>Lastname</label>
+            <div class="form-group">
+                <input type="text" class="form-control" name="places" placeholder="Lastname" [(ngModel)]="pilotCreating.lastName" #places="ngModel" [ngClass]="{ 'is-invalid': f.submitted && places.invalid }" required/>
+                <div *ngIf="f.submitted && places.invalid">
+                    <div *ngIf="places.errors" class="ui pointing red basic label" style="width:100%">
+                        Input Lastname
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="field">
+            <label>Expirience</label>
+            <div class="form-group">
+                <input type="number" class="form-control" name="carrying" placeholder="Expirience" [(ngModel)]="pilotCreating.expirience" #carrying="ngModel" [ngClass]="{ 'is-invalid': f.submitted && carrying.invalid }" required pattern="^[1-9][0-9]?$|^100$" />
+                <div *ngIf="f.submitted && carrying.invalid">
+                    <div *ngIf="carrying.errors" class="ui pointing red basic label" style="width:100%">
+                        Input Expirience
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input class="ui green button" (click)="pilotCreate(pilotCreating)" type="submit" value="Save" form="myform" style="width: 100%;" />
+</form>
+
+
+<div class="ui container " style=" margin-bottom:10px; margin-top:20px; ">
+    <div class="ui three doubling cards ">
+        <div class="ui raised fluid card " *ngFor="let pilot of pilots ">
+            <div class="ui top attached label ">Pilot id: {{pilot['id']}}</div>
+            <div class="content ">
+                <a href="/menu/pilots/{{pilot.id}} " class="center aligned header ">{{pilot['firstName']}} {{pilot['lastName']}}</a>
+                <div class="center aligned meta ">
+                    <span class="date ">Expirience: {{pilot['experience']}}</span>
+                </div>
+            </div>
+            <button class="ui red bottom attached button " (click)="pilotDelete(pilot[ 'id']) ">Delete</button>
         </div>
     </div>
 </div>

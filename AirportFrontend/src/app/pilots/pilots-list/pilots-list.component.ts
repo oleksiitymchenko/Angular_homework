@@ -10,36 +10,42 @@ import PilotDto from '../../shared/pilotDto';
 export class PilotsListComponent implements OnInit {
 
   pilots: Array<PilotDto>;
+  pilotCreating:PilotDto;
+  creating:boolean;
+
   constructor(private pilotServise: PilotsService) {
     this.getAllPilots();
+    this.pilotCreating= new PilotDto(undefined,undefined,undefined,undefined);
+    this.creating=false;
+  }
+
+  creatingProcess()
+  {
+    const x = !this.creating;
+    this.creating=x;
   }
 
   pilotDelete(id: number) {
     const number = this.pilots.findIndex(item => (item['id'] == id));
     this.pilots.splice(number, 1);
-    this.pilotServise.deletePilot(id).subscribe();
+    this.pilotServise.deletePilot(id).subscribe((res:Response)=>console.log(res));
   }
 
   getAllPilots() {
     this.pilotServise.getPilots().subscribe((data: Array<PilotDto>) => {
       this.pilots = data;
+      console.log(this.pilots);
+      (res:Response)=>console.log(res);
     });
   }
 
-  pilotUpdate(id: number) {
-    const pilot = new PilotDto(5, " test ", "test ", 10);
-    this.pilotServise.updatePilot(id, pilot).subscribe();
-    const updating = this.pilots.find(item => item['id'] == id);
-    updating['firstName'] = pilot['FirstName'];
-    updating['lastName'] = pilot['LastName'];
-    updating['experience'] = pilot['Experience'];
-  }
+  
 
-  pilotCreate()
+  pilotCreate(pilot)
   {
-    const pilot = new PilotDto(5, " test create 3", "test create 3", 10);
-    this.pilotServise.createPilot(pilot).subscribe();
-    this.getAllPilots();
+    this.pilotServise.createPilot(pilot)
+      .subscribe((res:Response)=>{console.log(res);  this.getAllPilots();});
+  
   }
 
   ngOnInit() {
