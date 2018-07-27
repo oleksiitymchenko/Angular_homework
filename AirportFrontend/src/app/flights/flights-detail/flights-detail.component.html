@@ -1,6 +1,93 @@
-<p>
-    ticket-detail works!
+<!--<div *ngIf="allowchange">
+        <br>
+        <form id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+            <h4 class="ui dividing header">Departure updating</h4>
+            <div class="three fields">
+                <div class="field">
+                    <label>Flight number</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="departure.flightNumber" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                        <div *ngIf="f.submitted && model.invalid">
+                            <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                                Input flight number
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Time</label>
+                    <div class="form-group">
+                        <input type="time" class="form-control" name="time" placeholder="Time" [(ngModel)]="departure.departureTime" #time="ngModel" [ngClass]="{ 'is-invalid': f.submitted && time.invalid }" required/>
+                        <div *ngIf="f.submitted && time.invalid">
+                            <div *ngIf="time.errors.required" class="ui pointing red basic label" style="width:100%">
+                                Input time
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="two fields">
+                <div class="field">
+                    <div class="form-group">
+                        <label>Select crew</label>
+                        <select class="form-control" name="crewId" [(ngModel)]="departure.crewId" #crewId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && crewId.invalid }" required>
+                                    <option *ngFor="let c of crews" [ngValue]="c.id">Id:{{c.id}} pilotId: {{c.pilotId}} stews: {{c.stewardressIds.length}}</option>
+                            </select>
+                        <div *ngIf="f.submitted && crewId.invalid">
+                            <div *ngIf="crewId.errors.required" class="ui pointing red basic label" style="width:100%">
+                                select plane
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="form-group">
+                        <label>Select plane</label>
+                        <select class="form-control" name="planeId" [(ngModel)]="departure.planeId" #planeId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && planeId.invalid }" required>
+                                            <option *ngFor="let c of planes" [ngValue]="c.id">Id:{{c.id}}  {{c.name}}</option >
+                            </select>
+                        <div *ngIf="f.submitted && planeId.invalid">
+                            <div *ngIf="planeId.errors.required" class="ui pointing red basic label" style="width:100%">
+                                select plane
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div><a href="./menu/departures"><button class="ui left labeled icon button">
+                            <i class="left arrow icon"></i>
+                            Back to list
+                          </button></a>
+            <input class="ui green button" (click)="departureSaveUpdates(departure['id'],departure)" type="submit" value="Save" form="myform" />
+        </div>
+    </div>-->
 
-    <button onclick=""></button>
-</p>
-<h1> {{planetype.number}}</h1>
+<div *ngIf="!allowchange" class="ui cards">
+    <div class="ui raised card ">
+        <div class="ui top attached label ">
+            Flight id: {{flight['id']}}
+        </div>
+        <div class="content ">
+            <a href="/menu/flights/{{fl.id}} " class="center aligned header ">Flight number: {{flight['number']}}</a>
+            <div class="center aligned meta ">
+                <p>Start point: {{fflightl.startPoint}}</p>
+                <p>End point: {{flight.finishPoint}}</p>
+                <p>Start time: {{flight.startTime}}</p>
+                <p>End time: {{flight.finishTime}}</p>
+                <p *ngFor="let t of flight.ticketIds">
+                    Ticket id: {{t}}
+                </p>
+
+            </div>
+        </div>
+        <div class="center aligned buttons">
+            <a href="./menu/flights"><button class="ui left labeled icon button">
+                                                    <i class="left arrow icon"></i>
+                                                    Back to list
+                                                  </button></a>
+            <div class="ui primary button" (click)="onUpdateClick()">Update</div>
+        </div>
+    </div>
+</div>
