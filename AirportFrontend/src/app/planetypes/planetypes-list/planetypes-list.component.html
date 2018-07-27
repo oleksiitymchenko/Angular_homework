@@ -1,23 +1,62 @@
-<p>
-    stewardess-list works!
-</p>
+<h1 class="ui center aligned header">
+    Plane types list
+    <button class="ui green button" (click)="creatingProcess()" style="width:100%; height: 45px;">Сreate new plane type </button>
 
-<div class="ui container" style="margin-top:70px; margin-bottom:10px;">
-    <button class="ui primary button" (click)="planetypeCreate()"> Create new planetype </button>
-
-    <div class="ui three stackable cards">
-        <div class="ui card" *ngFor="let type of planetypes">
-            <div class="content">
-                <a href="#" class="header">Model: {{type['model']}}</a>
-                <div class="meta">
-                    <span class="date">Places: {{type['places']}}</span>
-                    <span class="date">Carrying: {{type['carrying']}}</span>
+</h1>
+<form *ngIf="creating" id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+    <h4 class="ui dividing header">Plane type creation </h4>
+    <div class="three fields">
+        <div class="field">
+            <label>Type model</label>
+            <div class="form-group">
+                <input type="text" class="form-control" name="model" placeholder="Model of plane" [(ngModel)]="planetypeCreating.model" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <div *ngIf="f.submitted && model.invalid">
+                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input model
+                    </div>
                 </div>
             </div>
-            <div class="extra content">
-                <button class="ui primary button" (click)="planetypeDelete(type['id']) ">delete</button>
-                <button class="ui primary button" (click)="planetypeUpdate(type['id'])"> update </button>
+        </div>
+        <div class="field">
+            <label>Places</label>
+            <div class="form-group">
+                <input type="number" class="form-control" name="places" placeholder="Number of places" [(ngModel)]="planetypeCreating.places" #places="ngModel" [ngClass]="{ 'is-invalid': f.submitted && places.invalid }" required/>
+                <div *ngIf="f.submitted && places.invalid">
+                    <div *ngIf="places.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input places
+                    </div>
+                </div>
             </div>
+
+        </div>
+        <div class="field">
+            <label>Carrying amount</label>
+            <div class="form-group">
+                <input type="number" class="form-control" name="carrying" placeholder="Carrying amount" [(ngModel)]="planetypeCreating.carrying" #carrying="ngModel" [ngClass]="{ 'is-invalid': f.submitted && carrying.invalid }" required/>
+                <div *ngIf="f.submitted && carrying.invalid">
+                    <div *ngIf="carrying.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input carrying amount
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input class="ui green button" (click)="planetypeCreate(planetypeCreating)" type="submit" value="Save" form="myform" style="width: 100%;" />
+</form>
+
+
+<div class="ui container" style=" margin-bottom:10px; margin-top:20px;">
+    <div class="ui three doubling cards">
+        <div class="ui raised fluid card" *ngFor="let type of planetypes">
+            <div class="ui top attached label">Type id: {{type['id']}}</div>
+            <div class="content">
+                <a href="/menu/planetypes/{{type.id}}" class="center aligned header">Model: {{type['model']}}</a>
+                <div class="center aligned meta">
+                    <span class="places">Places: {{type['places']}}</span>
+                    <span class="carrying">Carrying: {{type['carrying']}}</span>
+                </div>
+            </div>
+            <button class="ui red bottom attached button" (click)="planetypeDelete(type['id'])">Delete</button>
         </div>
     </div>
 </div>

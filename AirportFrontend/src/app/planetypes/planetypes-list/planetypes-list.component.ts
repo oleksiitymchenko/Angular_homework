@@ -10,22 +10,27 @@ import PlaneTypeDto from '../../shared/planetype.Dto';
 export class PlanetypesListComponent implements OnInit {
 
   planetypes: Array<PlaneTypeDto>;
+  planetypeCreating:PlaneTypeDto;
+  creating:boolean;
+
   constructor(private planetypesServise: PlanetypesService) {
     this.getAllPlanetypes();
+    this.planetypeCreating=new PlaneTypeDto(undefined,undefined,undefined,undefined);
+    this.creating=false;
+  }
+
+  getAllPlanetypes() {
+    this.planetypesServise.getPlanetypes()
+      .subscribe((data: Array<PlaneTypeDto>) => {
+        this.planetypes = data;
+        (res:Response)=>console.log(res);
+      });
   }
 
   planetypeDelete(id: number) {
     const number = this.planetypes.findIndex(item => (item['id'] == id));
     this.planetypes.splice(number, 1);
     this.planetypesServise.deletePlanetype(id).subscribe();
-  }
-
-  getAllPlanetypes() {
-    this.planetypesServise.getPlanetypes().subscribe((data: Array<PlaneTypeDto>) => {
-      this.planetypes = data;
-      console.log(this.planetypes);
-    });
-   
   }
 
   planetypeUpdate(id: number) {
@@ -37,13 +42,20 @@ export class PlanetypesListComponent implements OnInit {
     updating['carrying'] = planetype['carrying'];
    }
 
-   planetypeCreate()
+   planetypeCreate(planetype:PlaneTypeDto)
   {
-    const planetype = new PlaneTypeDto(5, "model create",100,1000);
-    this.planetypesServise.createPlanetype(planetype).subscribe(()=>this.getAllPlanetypes());
+    this.planetypesServise.createPlanetype(planetype)
+      .subscribe(()=>
+      {this.getAllPlanetypes(); 
+        (res:Response)=>console.log(res);});
   }
+
+  creatingProcess()
+  {
+    const x = !this.creating;
+    this.creating=x;
+  }
+
   ngOnInit() {
   }
-
-
 }

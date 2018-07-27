@@ -19,19 +19,6 @@ export class TicketsListComponent implements OnInit {
     this.creating=false;
   }
 
-  creatingProcess()
-  {
-    const x = !this.creating;
-    this.creating=x;
-  }
-
-
-  ticketDelete(id: number) {
-    const number = this.tickets.findIndex(item => (item['id'] == id));
-    this.tickets.splice(number, 1);
-    this.ticketsServise.deleteTicket(id).subscribe();
-  }
-
   getAllTickets() {
     this.ticketsServise.getTickets()
       .subscribe((data: Array<TicketDto>) => {
@@ -39,6 +26,18 @@ export class TicketsListComponent implements OnInit {
         (res:Response)=>console.log(res);
     });
    
+  }
+
+  creatingProcess()
+  {
+    const x = !this.creating;
+    this.creating=x;
+  }
+
+  ticketDelete(id: number) {
+    const number = this.tickets.findIndex(item => (item['id'] == id));
+    this.tickets.splice(number, 1);
+    this.ticketsServise.deleteTicket(id).subscribe();
   }
 
   ticketCreate(ticket:TicketDto)

@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import {PlanetypesDetailComponent} from './planetypes-detail/planetypes-detail.component';
 import {PlanetypesListComponent} from './planetypes-list/planetypes-list.component';
 import {PlanetypesService } from './planetypes.service';
+import { FormsModule } from '../../../node_modules/@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [PlanetypesDetailComponent,
     PlanetypesListComponent],
