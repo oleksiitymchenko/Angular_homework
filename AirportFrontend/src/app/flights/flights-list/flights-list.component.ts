@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlightsService } from '../flights.service';
 import FlightDTO from 'src/app/shared/flightDto';
 import { HttpResponse } from '../../../../node_modules/@types/selenium-webdriver/http';
+import TicketDto from 'src/app/shared/ticketDto';
 
 @Component({
   selector: 'app-flights-list',
@@ -11,9 +12,18 @@ import { HttpResponse } from '../../../../node_modules/@types/selenium-webdriver
 export class FlightsListComponent implements OnInit {
 
   flights: Array<FlightDTO>;
+  tickets: Array<TicketDto>;
+  creating:boolean;
+  allowchange: boolean;
   constructor(private service: FlightsService) {
     this.getAllFlights();
+    this.creating=false;
   }
+
+ /* getAllTickets(flights:Array<FlightDTO>)
+  {
+    this.tickets.push(flights.forEach((value)=>console.log(value)))
+  }*/
 
  flightDelete(id: number) {
     const number = this.flights.findIndex(item => (item['id'] == id));
@@ -29,18 +39,17 @@ export class FlightsListComponent implements OnInit {
    
   }
 
-  flightUpdate(id: number) {
-    const flight = new FlightDTO(4,"MH-17UPT","Kiev","2018-05-01 7:34:42Z","Cairo","2018-05-01 9:34:42Z",[6,8]);
-    this.service.updateFlight(id, flight).subscribe((res:Response)=>console.log(res));
+  flightSaveUpdates(id: number,flight:FlightDTO) {
+    /*const flight = new FlightDTO(4,"MH-17UPT","Kiev","2018-05-01 7:34:42Z","Cairo","2018-05-01 9:34:42Z",[6,8]);
+    */this.service.updateFlight(id, flight).subscribe((res:Response)=>console.log(res));
     const updating = this.flights.find(item => item['id'] == id);
-    updating.startPoint = flight.startPoint;
-    updating.number=flight.number;
-    updating.startTime = flight.startTime;
-    updating.finishPoint = flight.finishPoint;
-    updating.finishTime = flight.finishTime;
-    updating.ticketIds = flight.ticketIds;
-   }
 
+   }
+   onUpdateClick()
+   {
+     this.allowchange = true;
+   }
+ 
    flightCreate()
   {
     const tickets = [10,12]
@@ -50,6 +59,4 @@ export class FlightsListComponent implements OnInit {
     }
   ngOnInit() {
   }
-
-
 }
