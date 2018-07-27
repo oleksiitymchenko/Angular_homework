@@ -15,6 +15,8 @@ import { CrewsService } from '../../crews/crews.service';
 })
 export class DeparturesDetailComponent implements OnInit {
     departure:DepartureDto;
+    crews:Array<CrewDto>;
+    planes:Array<PlaneDto>;
     crew:CrewDto;
     plane:PlaneDto;
     id:number;
@@ -32,6 +34,8 @@ export class DeparturesDetailComponent implements OnInit {
       pserv.getOnePlane(this.departure.planeId).subscribe((data:PlaneDto)=>this.plane=data);
       cserv.getOneCrew(this.departure.crewId).subscribe((data:CrewDto)=>this.crew=data);});
     this.allowchange = false;
+    pserv.getPlanes().subscribe((data:Array<PlaneDto>)=>this.planes=data);
+    cserv.getCrews().subscribe((data:Array<CrewDto>)=>this.crews=data);
     console.log(this.plane);
     console.log(this.crew);
   }
@@ -40,7 +44,7 @@ export class DeparturesDetailComponent implements OnInit {
     this.allowchange = true;
   }
 
-  departureUpdate(id: number,departure:DepartureDto) {
+  departureSaveUpdates(id: number,departure:DepartureDto) {
     /*const departure = new DepartureDto(2,"MH-17UPT","2018-05-01 7:45:42Z",1,11);*/
     this.service.updateDeparture(id, departure).subscribe((res:Response)=>console.log(res));
    }
