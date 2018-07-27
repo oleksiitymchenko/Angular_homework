@@ -70,7 +70,7 @@
             <div class="content ">
                 <a href="/menu/departures/{{dep.id}} " class="center aligned header ">Flight number: {{dep['flightNumber']}}</a>
                 <div class="center aligned meta ">
-                    <p>Departure time: {{dep.departureTime}}</p>
+                    <p>Departure time: {{dep.departureTime.slice(-11)}}</p>
                     <p>Crew id: {{dep.crewId}}</p>
                     <p>Plane id: {{dep.planeId}}</p>
                 </div>

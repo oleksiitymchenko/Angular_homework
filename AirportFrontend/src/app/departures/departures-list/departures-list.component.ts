@@ -69,11 +69,6 @@ export class DeparturesListComponent implements OnInit {
    
   }
 
-  departureUpdate(id: number,departure:DepartureDto) {
-    /*const departure = new DepartureDto(2,"MH-17UPT","2018-05-01 7:45:42Z",1,11);*/
-    this.service.updateDeparture(id, departure).subscribe();
-   }
-
   departureCreate(departure: DepartureDto)
   { console.log('create called');
     console.log(departure);
