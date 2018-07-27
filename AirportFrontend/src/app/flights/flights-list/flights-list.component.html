@@ -1,15 +1,15 @@
 <h1 class="ui center aligned header">
     Flights list
-    <button class="ui green button" (click)="creatingProcess()" style="width:100%; height: 45px;">Сreate new departure </button>
+    <button class="ui green button" (click)="creatingProcess()" style="width:100%; height: 45px;">Сreate new flight </button>
 
 </h1>
-<!--<form *ngIf="creating" id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+<form *ngIf="creating" id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
     <h4 class="ui dividing header">Departure creation</h4>
     <div class="three fields">
         <div class="field">
             <label>Flight number</label>
             <div class="form-group">
-                <input type="text" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="departureCreating.flightNumber" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <input type="text" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.flightNumber" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
                 <div *ngIf="f.submitted && model.invalid">
                     <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
                         Input flight number
@@ -18,49 +18,67 @@
             </div>
         </div>
         <div class="field">
-            <label>Time</label>
+            <label>Start point</label>
             <div class="form-group">
-                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="departureCreating.departureTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.startPoint" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
                 <div *ngIf="f.submitted && model.invalid">
                     <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
-                        Input time
+                        Input start point
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Finish point</label>
+            <div class="form-group">
+                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.finishPoint" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <div *ngIf="f.submitted && model.invalid">
+                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input finish point
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
     <div class="two fields">
         <div class="field">
+            <label>Start time</label>
             <div class="form-group">
-                <label>Select crew</label>
-                <select class="form-control" name="crewId" [(ngModel)]="departureCreating.crewId" #crewId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && crewId.invalid }" required>
-                            <option *ngFor="let c of crews" [ngValue]="c.id">Id:{{c.id}} pilotId: {{c.pilotId}} stews: {{c.stewardressIds.length}}</option>
-                    </select>
-                <div *ngIf="f.submitted && crewId.invalid">
-                    <div *ngIf="crewId.errors.required" class="ui pointing red basic label" style="width:100%">
-                        select plane
+                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.startTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <div *ngIf="f.submitted && model.invalid">
+                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input start time
                     </div>
                 </div>
             </div>
         </div>
         <div class="field">
+            <label>End time</label>
             <div class="form-group">
-                <label>Select plane</label>
-                <select class="form-control" name="planeId" [(ngModel)]="departureCreating.planeId" #planeId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && planeId.invalid }" required>
-                                    <option *ngFor="let c of planes" [ngValue]="c.id">Id:{{c.id}}  {{c.name}}</option >
-                    </select>
-                <div *ngIf="f.submitted && planeId.invalid">
-                    <div *ngIf="planeId.errors.required" class="ui pointing red basic label" style="width:100%">
-                        select plane
+                <input type="time" class="form-control" name="model" placeholder="FlightNumber" [(ngModel)]="flightCreating.finishTime" #model="ngModel" [ngClass]="{ 'is-invalid': f.submitted && model.invalid }" required/>
+                <div *ngIf="f.submitted && model.invalid">
+                    <div *ngIf="model.errors.required" class="ui pointing red basic label" style="width:100%">
+                        Input end time
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <input class="ui green button" (click)="departureCreate(departureCreating)" type="submit" value="Save" form="myform" style="width: 100%;" />
-</form>-->
+    <div class="field">
+        <div class="form-group">
+            <label>Select ticket</label>
+            <select class="form-control" name="ticketid" [(ngModel)]="ticketid" #crewId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && crewId.invalid }" required>
+                            <option *ngFor="let c of tickets" [ngValue]="c.id"><button (click)="AddTicket(c.id)"class="ui button">Add ticket {{c.id}} {{c.flightNumber}}</button></option>
+                    </select>
+            <div *ngIf="f.submitted && ticketid.invalid">
+                <div *ngIf="ticketid.errors.required" class="ui pointing red basic label" style="width:100%">
+                    select tickets
+                </div>
+            </div>
+        </div>
+    </div>
+    <input class="ui green button" (click)="flightCreate(flightCreating)" type="submit" value="Save" form="myform" style="width: 100%;" />
+</form>
 
 <div class="ui container " style=" margin-bottom:10px; margin-top:20px; ">
     <div class="ui three doubling cards ">

@@ -3,6 +3,7 @@ import { FlightsService } from '../flights.service';
 import FlightDTO from 'src/app/shared/flightDto';
 import { HttpResponse } from '../../../../node_modules/@types/selenium-webdriver/http';
 import TicketDto from 'src/app/shared/ticketDto';
+import { TicketsService } from '../../tickets/tickets.service';
 
 @Component({
   selector: 'app-flights-list',
@@ -13,13 +14,24 @@ export class FlightsListComponent implements OnInit {
 
   flights: Array<FlightDTO>;
   tickets: Array<TicketDto>;
+  flightCreating:FlightDTO;
+  ticketids:number[];
+  ticketid : number;
   creating:boolean;
   allowchange: boolean;
-  constructor(private service: FlightsService) {
+
+  constructor(private service: FlightsService, private tserv:TicketsService) {
     this.getAllFlights();
     this.creating=false;
+    tserv.getTickets().subscribe((data:Array<TicketDto>)=>this.tickets=data);
+    this.flightCreating=new FlightDTO(undefined,undefined,undefined,undefined,undefined,undefined,undefined);
   }
-
+  AddTicket(id: number)
+  {
+    this.ticketids.push(id);
+    const number = this.tickets.findIndex(item => (item['id'] == id));
+    this.tickets.splice(number, 1);
+ }
  /* getAllTickets(flights:Array<FlightDTO>)
   {
     this.tickets.push(flights.forEach((value)=>console.log(value)))
@@ -40,8 +52,7 @@ export class FlightsListComponent implements OnInit {
   }
 
   flightSaveUpdates(id: number,flight:FlightDTO) {
-    /*const flight = new FlightDTO(4,"MH-17UPT","Kiev","2018-05-01 7:34:42Z","Cairo","2018-05-01 9:34:42Z",[6,8]);
-    */this.service.updateFlight(id, flight).subscribe((res:Response)=>console.log(res));
+    this.service.updateFlight(id, flight).subscribe((res:Response)=>console.log(res));
     const updating = this.flights.find(item => item['id'] == id);
 
    }
@@ -50,10 +61,9 @@ export class FlightsListComponent implements OnInit {
      this.allowchange = true;
    }
  
-   flightCreate()
+   flightCreate(flight:FlightDTO)
   {
-    const tickets = [10,12]
-    const flight = new FlightDTO(4,"MH-17CRE","Kiev","2018-05-01 7:34:42Z","Moscow","2018-05-01 9:34:42Z",tickets);
+    flight.ticketIds=this.ticketids;
     console.log(flight);
     this.service.createFlight(flight).subscribe((response:Response) =>{console.log(response);this.getAllFlights();});
     }
