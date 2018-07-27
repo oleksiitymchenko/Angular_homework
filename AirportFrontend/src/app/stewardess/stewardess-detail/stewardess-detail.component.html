@@ -1,6 +1,68 @@
-<p>
-    stewardess-detail works!
+<div *ngIf="allowchange">
+    <br>
+    <form id="myform" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="ui form" style="color:black">
+        <h4 class="ui dividing header">Stewardess {{stewardess.id}} creation</h4>
+        <div class="three fields">
+            <div class="field">
+                <label>Firstame</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="firstname" placeholder="Firstame" [(ngModel)]="stewardess.firstName" #firstname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstname.invalid }" required/>
+                    <div *ngIf="f.submitted && firstname.invalid">
+                        <div *ngIf="firstname.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input Firstname
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Lastname</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="lastname" placeholder="Lastname" [(ngModel)]="stewardess.lastName" #lastname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastname.invalid }" required/>
+                    <div *ngIf="f.submitted && lastname.invalid">
+                        <div *ngIf="lastname.errors.required" class="ui pointing red basic label" style="width:100%">
+                            Input Lastname
+                        </div>
+                    </div>
+                </div>
 
-    <button onclick=""></button>
-</p>
-<h1> {{stewardess.firstName}}</h1>
+            </div>
+            <div class="field">
+                <label>Birthday</label>
+                <div class="form-group">
+                    <input type="date" class="form-control" name="exp" placeholder="Birthday" [(ngModel)]="stewardess['dateOfBirth']" #exp="ngModel" [ngClass]="{ 'is-invalid': f.submitted && exp.invalid}" required/> />
+                    <div *ngIf="f.submitted && exp.invalid">
+                        <div *ngIf="exp.errors" class="ui pointing red basic label" style="width:100%">
+                            Input valid date
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <div><a href="./menu/stewardesses"><button class="ui left labeled icon button">
+                    <i class="left arrow icon"></i>
+                    Back to list
+                  </button></a>
+        <input class="ui green button" (click)="stewardessSaveUpdates(stewardess['id'],stewardess)" type="submit" value="Save" form="myform" />
+    </div>
+</div>
+
+<div *ngIf="!allowchange" class="ui cards">
+    <div class="ui raised card">
+        <div class="ui top attached label">Stewardess id: {{stewardess['id']}}</div>
+        <div class="content">
+            <a href="/menu/stewardesses/{{stewardess.id}}" class="center aligned header">{{stewardess['firstName']}} {{stewardess['lastName']}}</a>
+            <div class="center aligned meta">
+                <p class="date">Expirience: {{stewardess['dateOfBirth'].slice(0,10)}}</p>
+            </div>
+        </div>
+        <div class="center aligned buttons">
+            <a href="./menu/stewardesses"><button class="ui left labeled icon button">
+                                <i class="left arrow icon"></i>
+                                Back to list
+                              </button></a>
+            <div class="ui primary button" (click)="onUpdateClick()">Update</div>
+        </div>
+    </div>
+</div>
